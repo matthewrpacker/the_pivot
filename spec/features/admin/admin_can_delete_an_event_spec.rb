@@ -17,7 +17,7 @@ RSpec.feature "Admin can delete an event" do
       expect(current_path).to eq(venue_path(venue))
 
       within("#event-#{event.id}") do
-        click_on "Delete Event"
+        click_on "Delete"
       end
 
       expect(current_path).to eq(venue_path(venue))
@@ -35,7 +35,7 @@ RSpec.feature "Admin can delete an event" do
 
       visit event_path(event.venue, event)
 
-      click_on "Delete Event"
+      click_on "Delete"
 
       expect(current_path).to eq(venue_path(venue))
       expect(page).to have_content("Event Removed Successfully!")
@@ -54,7 +54,7 @@ RSpec.feature "Admin can delete an event" do
 
       visit venue_path(venue)
 
-      expect(page).to_not have_button("Delete Event")
+      expect(page).to_not have_button("Delete")
     end
 
     scenario "they visit the event show page" do
@@ -66,7 +66,7 @@ RSpec.feature "Admin can delete an event" do
 
       visit event_path(event.venue, event)
 
-      expect(page).to_not have_button("Delete Event")
+      expect(page).to_not have_button("Delete")
     end
   end
 end

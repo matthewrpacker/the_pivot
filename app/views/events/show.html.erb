@@ -19,8 +19,8 @@
         <br />
         <% if current_admin? %>
           <p>
-            <%= link_to 'Edit Event', edit_admin_event_path(@event), class: 'btn btn-default' %>
-            <%= link_to "Delete Event", admin_event_path(@event), method: :delete, class: 'btn btn-sm btn-danger' %>
+            <%= link_to 'Edit', edit_admin_event_path(@event), class: 'btn btn-default' %>
+            <%= link_to "Delete", admin_event_path(@event), method: :delete, class: 'btn btn-sm btn-danger' %>
           </p>
         <% end %>
       <% end %>

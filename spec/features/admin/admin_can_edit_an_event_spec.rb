@@ -13,7 +13,7 @@ RSpec.feature "Admin can edit an event" do
       click_on "View My Events"
 
       within("#event-#{event.id}") do
-        click_on "Manage Event"
+        click_on "Edit"
       end
 
       expect(current_path).to eq(edit_admin_event_path(event))

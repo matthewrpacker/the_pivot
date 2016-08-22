@@ -28,11 +28,9 @@
     <% end %>
     <!-- Currently hidden due to this being tentative functionality -->
     <!-- <div class="form-group">
-      <%= f.label :upload_image, 'Image' %>
-      <%= f.file_field :upload_image, class: 'center_button' %>
+      <%#= f.label :upload_image, 'Image' %>
+      <%#= f.file_field :upload_image, class: 'center_button' %>
     </div> -->
-    <div class="form-group">
-      <%= f.submit "#{button}", class: 'form-control btn btn-default' %>
-    </div>
+    <%= f.submit "#{button}", class: 'btn btn-primary' %>
   <% end %>
 </div>
