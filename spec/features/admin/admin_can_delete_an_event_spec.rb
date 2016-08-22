@@ -6,7 +6,9 @@ RSpec.feature "Admin can delete an event" do
       event = create(:event)
       venue = event.venue
       admin = venue.admin
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(admin)
 
       visit admin_dashboard_index_path
 
@@ -27,7 +29,9 @@ RSpec.feature "Admin can delete an event" do
       event = create(:event)
       venue = event.venue
       admin = venue.admin
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(admin)
 
       visit event_path(event.venue, event)
 
@@ -44,7 +48,9 @@ RSpec.feature "Admin can delete an event" do
       user = create(:user)
       event = create(:event)
       venue = event.venue
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(user)
 
       visit venue_path(venue)
 
@@ -54,8 +60,9 @@ RSpec.feature "Admin can delete an event" do
     scenario "they visit the event show page" do
       user = create(:user)
       event = create(:event)
-      venue = event.venue
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(user)
 
       visit event_path(event.venue, event)
 

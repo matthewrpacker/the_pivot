@@ -225,7 +225,7 @@ class Seed
           image_path: "http://robohash.org/#{i}.png?set=set2&bgset=bg1&size=200x200",
           category: category,
           venue: Venue.offset(rand(Venue.count)).first,
-          date: Faker::Time.forward(90, :evening)
+          date: Faker::Time.forward(150, :evening)
         )
         puts "#{category.title}: Event #{i + 1} created."
       end

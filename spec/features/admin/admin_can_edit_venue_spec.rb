@@ -5,7 +5,9 @@ RSpec.feature "Admin can edit a venue" do
     scenario "when they Manage Venue with valid information" do
       venue = create(:venue)
       admin = venue.admin
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(admin)
 
       visit admin_dashboard_index_path
 
@@ -35,7 +37,9 @@ RSpec.feature "Admin can edit a venue" do
     scenario "when they Manage Venue with invalid information" do
       venues = create_list(:venue, 2)
       admin = venues.first.admin
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(admin)
 
       visit admin_dashboard_index_path
 
@@ -56,7 +60,9 @@ RSpec.feature "Admin can edit a venue" do
     scenario "venue admin attempts to visit another venue's edit page" do
       venues = create_list(:venue, 2)
       admin = venues.first.admin
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(admin)
 
       visit edit_admin_venue_path(venues.last)
 

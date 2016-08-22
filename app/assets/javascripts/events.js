@@ -14,18 +14,18 @@ $(document).ready(function(){
     });
   });
 
-  $(document.body).css('padding-top', $('#topnavbar').height() + 10);
+  $('#yieldcontent').css('padding-top', $('#topnavbar').height() * 0.01);
 
   $(window).resize(function(){
-    $(document.body).css('padding-top', $('#topnavbar').height() + 10);
+    $('#yieldcontent').css('padding-top', $('#topnavbar').height() * 0.01);
   });
 
-  $(document).on('shown.bs.collapse', function () {
-    $(document.body).css('padding-top', $('#topnavbar').height() + 10);
+  $('#topnavbar').on('shown.bs.collapse', function () {
+    $('#yieldcontent').css('padding-top', $('#topnavbar').height() * 0.01);
   });
 
-  $(document).on('hidden.bs.collapse', function () {
-    $(document.body).css('padding-top', $('#topnavbar').height() - 10);
+  $('#topnavbar').on('hidden.bs.collapse', function () {
+    $('#yieldcontent').css('padding-top', $('#topnavbar').height() * 0.01);
   });
 
 });
