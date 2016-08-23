@@ -19,6 +19,10 @@ FactoryGirl.define do
     state 'CO'
     capacity 500
     admin { create(:venue_admin) }
+    status 0
+    factory :offline_venue do
+      status 1
+    end
   end
 
   factory :category do

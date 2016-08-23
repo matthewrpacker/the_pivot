@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update]
   resources :orders, only: [:index, :create, :show]
   resources :charges
-  resources :venues, only: [:index]
+  resources :venues, only: [:index, :new, :create]
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

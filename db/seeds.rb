@@ -52,7 +52,8 @@ class Seed
       city: 'Chicago',
       state: 'IL',
       capacity: 41268,
-      image_path: 'http://i.imgur.com/NqWzxPB.jpg'
+      image_path: 'http://i.imgur.com/NqWzxPB.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -60,7 +61,8 @@ class Seed
       city: 'Morrison',
       state: 'CO',
       capacity: 9525,
-      image_path: 'http://i.imgur.com/JGQP86m.jpg'
+      image_path: 'http://i.imgur.com/JGQP86m.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -68,7 +70,8 @@ class Seed
       city: 'Bronx',
       state: 'NY',
       capacity: 54251,
-      image_path: 'http://i.imgur.com/6kpS9z5.jpg'
+      image_path: 'http://i.imgur.com/6kpS9z5.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -76,7 +79,8 @@ class Seed
       city: 'Denver',
       state: 'CO',
       capacity: 5000,
-      image_path: 'http://i.imgur.com/SIccgUE.jpg'
+      image_path: 'http://i.imgur.com/SIccgUE.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -84,7 +88,8 @@ class Seed
       city: 'Los Angeles',
       state: 'CA',
       capacity: 2265,
-      image_path: 'http://i.imgur.com/3FT6OWs.jpg'
+      image_path: 'http://i.imgur.com/3FT6OWs.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -92,7 +97,8 @@ class Seed
       city: 'New York',
       state: 'NY',
       capacity: 2804,
-      image_path: 'http://i.imgur.com/7kSGPAh.jpg'
+      image_path: 'http://i.imgur.com/7kSGPAh.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -100,7 +106,8 @@ class Seed
       city: 'Sydney',
       state: 'AU',
       capacity: 6000,
-      image_path: 'http://i.imgur.com/ZhZQ5qw.jpg'
+      image_path: 'http://i.imgur.com/ZhZQ5qw.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -108,7 +115,8 @@ class Seed
       city: 'New York',
       state: 'NY',
       capacity: 18200,
-      image_path: 'http://i.imgur.com/AlRnvKR.jpg'
+      image_path: 'http://i.imgur.com/AlRnvKR.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -116,7 +124,8 @@ class Seed
       city: 'Denver',
       state: 'CO',
       capacity: 18007,
-      image_path: 'http://i.imgur.com/7OeaBay.jpg'
+      image_path: 'http://i.imgur.com/7OeaBay.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -124,7 +133,8 @@ class Seed
       city: 'George',
       state: 'WA',
       capacity: 27500,
-      image_path: 'http://i.imgur.com/Mzv1JU5.jpg'
+      image_path: 'http://i.imgur.com/Mzv1JU5.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -132,7 +142,8 @@ class Seed
       city: 'New York',
       state: 'NY',
       capacity: 5251,
-      image_path: 'http://i.imgur.com/APMN5QN.jpg'
+      image_path: 'http://i.imgur.com/APMN5QN.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -140,7 +151,8 @@ class Seed
       city: 'San Diego',
       state: 'CA',
       capacity: 125000,
-      image_path: 'http://i.imgur.com/81CNDWf.jpg'
+      image_path: 'http://i.imgur.com/81CNDWf.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -148,7 +160,8 @@ class Seed
       city: 'State College',
       state: 'PA',
       capacity: 107282,
-      image_path: 'http://i.imgur.com/9OcLwCU.jpg'
+      image_path: 'http://i.imgur.com/9OcLwCU.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -156,7 +169,8 @@ class Seed
       city: 'Glendale',
       state: 'AZ',
       capacity: 63400,
-      image_path: 'http://i.imgur.com/niiHcUO.jpg'
+      image_path: 'http://i.imgur.com/niiHcUO.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -164,7 +178,8 @@ class Seed
       city: 'St. Paul',
       state: 'MN',
       capacity: 17000,
-      image_path: 'http://i.imgur.com/zIJMgUm.jpg'
+      image_path: 'http://i.imgur.com/zIJMgUm.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -172,7 +187,8 @@ class Seed
       city: 'Pittsburgh',
       state: 'PA',
       capacity: 38362,
-      image_path: 'http://i.imgur.com/ZhpUui3.jpg'
+      image_path: 'http://i.imgur.com/ZhpUui3.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -180,7 +196,8 @@ class Seed
       city: 'Arlington',
       state: 'TX',
       capacity: 80000,
-      image_path: 'http://i.imgur.com/Q5qbKTi.jpg'
+      image_path: 'http://i.imgur.com/Q5qbKTi.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -188,7 +205,8 @@ class Seed
       city: 'Pyongyang',
       state: 'NK',
       capacity: 150000,
-      image_path: 'http://i.imgur.com/LqQAAeN.jpg'
+      image_path: 'http://i.imgur.com/LqQAAeN.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -196,7 +214,8 @@ class Seed
       city: 'Manila',
       state: 'PI',
       capacity: 20000,
-      image_path: 'http://i.imgur.com/hRFfDRE.jpg'
+      image_path: 'http://i.imgur.com/hRFfDRE.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -204,7 +223,8 @@ class Seed
       city: 'Barcelona',
       state: 'SP',
       capacity: 99354,
-      image_path: 'http://i.imgur.com/piLqdVD.jpg'
+      image_path: 'http://i.imgur.com/piLqdVD.jpg',
+      status: 0
       )
       puts "Venue #{Venue.last.name} created."
   end
@@ -242,7 +262,7 @@ class Seed
       email: "nate@turing.io",
       password: "password",
     )
-    User.last.roles << Role.find_by(name: 'venue_admin')
+    User.last.roles << Role.where.not(name: 'platform_admin')
     puts "Venue Admin Nate created."
   end
 
@@ -296,7 +316,7 @@ class Seed
       email: "jorge@turing.io",
       password: "password",
     )
-    User.last.roles << Role.where.not(name: 'registered_customer')
+    User.last.roles << Role.all
     puts "Platform Admin Jorge created."
   end
 end

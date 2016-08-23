@@ -1,5 +1,5 @@
 class Venue < ApplicationRecord
-  has_many :events
+  has_many :events, dependent: :destroy
   has_many :categories, through: :events
   belongs_to :admin, class_name: "User", foreign_key: :user_id
   validates :name, presence: true, uniqueness: true
@@ -8,6 +8,8 @@ class Venue < ApplicationRecord
   validates :state, presence: true
   validates :slug, presence: true, uniqueness: { case_sensitive: false }
   before_validation :create_slug
+
+  enum status: %w(online offline)
 
   def location
     "#{city}, #{state}"

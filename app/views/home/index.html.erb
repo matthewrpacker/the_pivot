@@ -6,3 +6,10 @@
   <br><br>
   <center><small>* <sub>Binoculars recommended (particularly the small kind with the handle, like you might expect to see in the audience at an opera or a ballet).</sub></small></center>
 </div>
+<div class="center">
+  <% if current_user %>
+    <%= link_to "Sell With Us", new_venue_path, class: "btn btn-lg btn-primary" %>
+  <% else %>
+    <%= link_to "Sell With Us", login_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
+</div>

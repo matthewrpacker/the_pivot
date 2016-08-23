@@ -16,4 +16,12 @@ RSpec.feature 'User views a venue show page' do
     expect(page).to have_content(venues.first.capacity)
     expect(page).not_to have_content(venues.last.name)
   end
+
+  scenario 'offline venue' do
+    offline_venue = create(:offline_venue)
+
+    visit venue_path(offline_venue)
+
+    expect(page).to have_css('img[src*="http://i.imgur.com/F4zRA3g.jpg"]')
+  end
 end
