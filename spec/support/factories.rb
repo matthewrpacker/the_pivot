@@ -18,7 +18,7 @@ FactoryGirl.define do
     city 'Denver'
     state 'CO'
     capacity 500
-    admin
+    admin { create(:venue_admin) }
   end
 
   factory :category do
@@ -34,9 +34,25 @@ FactoryGirl.define do
     username
     email
     password 'password'
+    roles { [ Role.find_or_create_by(name: 'registered_customer') ] }
 
-    factory :admin do
-      role 1
+    factory :venue_admin do
+      roles {
+        [
+          Role.find_or_create_by(name: 'registered_customer'),
+          Role.find_or_create_by(name: 'venue_admin')
+        ]
+      }
+    end
+
+    factory :platform_admin do
+      roles {
+        [
+          Role.find_or_create_by(name: 'registered_customer'),
+          Role.find_or_create_by(name: 'venue_admin'),
+          Role.find_or_create_by(name: 'platform_admin')
+        ]
+      }
     end
   end
 
@@ -63,5 +79,4 @@ FactoryGirl.define do
   sequence :image_path do |n|
     "https://robohash.org/#{n}"
   end
-
 end

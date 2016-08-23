@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_admin?
-    current_user && !current_user.customer?
+    current_user && (current_user.venue_admin? || current_user.platform_admin?)
   end
 
   def platform_admin?

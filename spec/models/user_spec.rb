@@ -6,6 +6,8 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of :email }
   it { should have_secure_password }
   it { should have_many :orders }
+  it { should have_many :user_roles }
+  it { should have_many(:roles).through(:user_roles) }
 
   it "should validate the format of an email address" do
     user1 = User.new(username: "Ryan", password: "isgreat", email: "the email@here")
