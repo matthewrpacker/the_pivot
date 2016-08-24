@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "User can login using Twitter" do
   scenario "user clicks twitter link and is logged in with that information" do
+    Role.create!(name: "registered_customer")
+
     setup_for_oauth
 
     visit login_path

@@ -12,9 +12,8 @@
         <p>
           <strong>Location:</strong> <%= venue.location %>
         </p>
-        <%= content_tag :div do %>
-          <%= link_to "View Venue", venue_path(venue), class: "center_button btn btn-sm btn-primary" %>
-        <% end %>
+        <%= link_to "View Venue", venue_path(venue), class: "btn btn-sm btn-primary" %>
+        <%= link_to "Delete", admin_venue_path(venue), method: :delete, class: "btn btn-sm btn-danger" if platform_admin? %>
       </div>
     </div>
   <% end %>

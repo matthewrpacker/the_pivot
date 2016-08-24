@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.roles << Role.find_by_name("registered_customer")
       session[:user_id] = @user.id
       send_welcome_email(@user)
       flash[:success] = "Account created successfully!"

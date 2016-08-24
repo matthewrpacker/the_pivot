@@ -48,7 +48,7 @@
           <th>Location</th>
           <th>Capacity</th>
           <th>Admin</th>
-          <th>Action</th>
+          <th class="text-center">Action</th>
         </thead>
         <tbody>
           <% @venues.each do |venue| %>
@@ -57,8 +57,10 @@
               <td><%= venue.location %></td>
               <td><%= venue.capacity %></td>
               <td><%= venue.admin.username %></td>
-              <td><%= button_to "Approve", admin_venues_path, { params: { name: venue.slug }, class: "btn btn-success center_button btn-sm" } %></td>
-              <td><%= button_to "Decline", admin_venue_path(venue), { method: :delete, class: "btn btn-success center_button btn-sm" } %></td>
+              <td>
+                <%= button_to "Approve", admin_venues_path, { params: { name: venue.slug }, class: "btn btn-success center_button btn-xs" } %>
+                <%= button_to "Decline", admin_venue_path(venue), { method: :delete, class: "btn btn-danger center_button btn-xs" } %>
+              </td>
             </tr>
           <% end %>
         </tbody>

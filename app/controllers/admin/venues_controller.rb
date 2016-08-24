@@ -24,8 +24,13 @@ class Admin::VenuesController < ApplicationController
 
   def destroy
     @venue.destroy
-    flash[:success] = "#{@venue.name} Declined!"
-    redirect_to admin_dashboard_index_path
+    if from_admin_dash?
+      flash[:success] = "#{@venue.name} Declined!"
+      redirect_to admin_dashboard_index_path
+    else
+      flash[:success] = "#{@venue.name} Removed!"
+      redirect_to venues_path
+    end
   end
 
   private
@@ -47,5 +52,9 @@ class Admin::VenuesController < ApplicationController
     unless current_user == @venue.admin || current_user.platform_admin?
       render file: '/public/404', status => 404, layout: true
     end
+  end
+
+  def from_admin_dash?
+    "/admin/#{request.referrer.split('/').last}" == admin_dashboard_index_path
   end
 end

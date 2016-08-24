@@ -17,6 +17,7 @@ class User < ApplicationRecord
       new_user.username        = auth_info.extra.raw_info.screen_name
       new_user.oauth_token     = auth_info.credentials.token
       new_user.password_digest = auth_info.credentials.secret
+      new_user.roles << Role.find_by_name("registered_customer")
     end
   end
 

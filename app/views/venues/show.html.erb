@@ -16,6 +16,13 @@
           <%= link_to 'Back', request.referrer, class: 'center_button btn btn-primary btn-md top-margin' %>
         </p>
       <% end %>
+      <% if platform_admin? %>
+        <p>
+          <%= link_to 'Delete Venue', admin_venue_path(@venue), method: :delete, class: 'center_button btn btn-danger' %>
+          <br />
+          <%= link_to 'Back', request.referrer, class: 'center_button btn btn-primary btn-md top-margin' %>
+        </p>
+      <% end %>
     </div>
     <div class="table-responsive col-md-8 fit-width">
       <table class="table">

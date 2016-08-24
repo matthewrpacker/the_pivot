@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "User can be created" do
   scenario "user can visit create account form" do
+    Role.create!(name: "registered_customer")
 
     visit new_user_path
 
