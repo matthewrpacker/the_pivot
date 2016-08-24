@@ -14,8 +14,7 @@
     <%= f.label :password %>
     <%= f.password_field :password %>
   </p>
-  <center>
-    <%= f.submit button, class: "center_button btn btn-#{btn_class}"%>
-  </center>
+  <%= link_to "Cancel", request.referrer, class: "btn btn-primary top-margin" %>
+    <%= f.submit button, class: "btn btn-#{btn_class} top-margin"%>
   <% end %>
 </div>

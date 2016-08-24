@@ -24,6 +24,7 @@
       </div>
       <%= f.hidden_field :status, value: 'offline' %>
       <%= f.submit "Submit Application", class: 'btn btn-primary top-margin' %>
+      <%= link_to "Cancel", dashboard_path, class: 'btn btn-primary top-margin' %>
     <% end %>
   </div>
 </div>

@@ -12,6 +12,8 @@
       <% if this_venues_admin? %>
         <p>
           <%= link_to 'Add New Event', new_admin_event_path, class: 'center_button btn btn-success' %>
+          <br />
+          <%= link_to 'Back', request.referrer, class: 'center_button btn btn-primary btn-md top-margin' %>
         </p>
       <% end %>
     </div>
