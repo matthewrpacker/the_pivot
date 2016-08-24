@@ -34,7 +34,9 @@ RSpec.feature "User can apply to add a venue" do
 
       click_button "Submit Application"
 
-      expect(page).to have_content "Application submitted! You will hear from us within 3-5 business days."
+      expect(page).to have_content "Application submitted! \
+                                    You will hear from us within 3-5 \
+                                    business days."
       expect(Venue.last.status).to eq "offline"
       expect(current_path).to eq(dashboard_path)
     end
@@ -54,20 +56,23 @@ RSpec.feature "User can apply to add a venue" do
 
     scenario "fill in form with invalid information" do
       user = create(:user)
+      existing_venue = create(:venue)
       allow_any_instance_of(ApplicationController).
         to receive(:current_user).
         and_return(user)
 
       visit new_venue_path
 
+      fill_in "Venue Name", with: existing_venue.name
       fill_in "Capacity", with: 50000
-      fill_in "Venue Name", with: "Turing Stadium"
       fill_in "Image URL", with: "http://i.imgur.com/lVgLlvg.jpg"
 
       click_button "Submit Application"
 
       expect(page).to have_content "Venue Application"
-      expect(page).to have_content "City can't be blank, State can't be blank"
+      expect(page).to have_content("Name has already been taken, \
+                                    City can't be blank, \
+                                    State can't be blank")
     end
   end
 
