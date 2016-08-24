@@ -1,5 +1,5 @@
 class Admin::VenuesController < ApplicationController
-  before_action :set_venue, only: [:edit, :update]
+  before_action :set_venue, only: [:edit, :update, :create, :destroy]
   before_action :verify_owner, only: [:edit]
 
   def edit
@@ -13,6 +13,19 @@ class Admin::VenuesController < ApplicationController
       flash.now[:danger] = @venue.errors.full_messages.join(', ')
       render :edit
     end
+  end
+
+  def create
+    @venue.update(status: "online")
+    @venue.admin.roles << Role.find_by_name("venue_admin")
+    flash[:success] = "#{@venue.name} Approved!"
+    redirect_to admin_dashboard_index_path
+  end
+
+  def destroy
+    @venue.destroy
+    flash[:success] = "#{@venue.name} Declined!"
+    redirect_to admin_dashboard_index_path
   end
 
   private

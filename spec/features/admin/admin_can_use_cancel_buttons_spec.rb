@@ -35,7 +35,7 @@ RSpec.feature "Admin can use cancel buttons" do
     click_on "Manage Venue"
 
     expect(page).to have_content "Edit Venue"
-    expect(current_path).to eq edit_admin_venue_path(venue.name.downcase)
+    expect(current_path).to eq edit_admin_venue_path(venue.slug)
 
     click_on "Cancel"
 
@@ -50,7 +50,7 @@ RSpec.feature "Admin can use cancel buttons" do
       to receive(:current_user).
       and_return(admin)
 
-    visit venue_path(venue.name.downcase)
+    visit venue_path(venue.slug)
 
     click_on "Add New Event"
 
@@ -59,7 +59,7 @@ RSpec.feature "Admin can use cancel buttons" do
 
     click_on "Cancel"
 
-    expect(current_path).to eq venue_path(venue.name.downcase)
+    expect(current_path).to eq venue_path(venue.slug)
   end
 
   scenario "admin clicks cancel from new event page" do
@@ -75,7 +75,7 @@ RSpec.feature "Admin can use cancel buttons" do
     click_on "View My Events"
 
     expect(page).to have_content venue.name
-    expect(current_path).to eq venue_path(venue.name.downcase)
+    expect(current_path).to eq venue_path(venue.slug)
 
     click_on "Back"
 
@@ -87,7 +87,7 @@ RSpec.feature "Admin can use cancel buttons" do
       click_on "View Venue"
     end
 
-    expect(current_path).to eq venue_path(venue.name.downcase)
+    expect(current_path).to eq venue_path(venue.slug)
 
     click_on "Back"
 

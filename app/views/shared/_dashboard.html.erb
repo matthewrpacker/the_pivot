@@ -42,7 +42,26 @@
   <br />
     <div class="well table-responsive row col-md-7">
       <h2>Pending Venues</h2>
-      <table class="table">
+      <table class="table" id="pending">
+        <thead>
+          <th>Venue Name</th>
+          <th>Location</th>
+          <th>Capacity</th>
+          <th>Admin</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          <% @venues.each do |venue| %>
+            <tr id="venue-<%= venue.id %>">
+              <td><%= venue.name %></td>
+              <td><%= venue.location %></td>
+              <td><%= venue.capacity %></td>
+              <td><%= venue.admin.username %></td>
+              <td><%= button_to "Approve", admin_venues_path, { params: { name: venue.slug }, class: "btn btn-success center_button btn-sm" } %></td>
+              <td><%= button_to "Decline", admin_venue_path(venue), { method: :delete, class: "btn btn-success center_button btn-sm" } %></td>
+            </tr>
+          <% end %>
+        </tbody>
       </table>
     </div>
   <% end %>
