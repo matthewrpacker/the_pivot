@@ -1,49 +1,49 @@
-<div class="well table-responsive row col-md-6">
-  <table class="table" id="user_dashboard">
-    <tr>
-      <th>Username</th>
-      <td><%= current_user.username %></td>
-    </tr>
-    <tr>
-      <th>E-mail</th>
-      <td><%= current_user.email %></td>
-    </tr>
-    <tr>
-      <th>Date Registered</th>
-      <td><%= current_user.date_registered %></td>
-    </tr>
-    <% if venue_admin_only? %>
+<div class="well center" id="dashboard">
+  <div class="well table-responsive fit-width">
+    <table class="table" id="user_dashboard">
       <tr>
-        <th>Venue</th>
-        <td><%= @venue.name %></td>
+        <th>Username</th>
+        <td><%= current_user.username %></td>
       </tr>
-    <% else %>
       <tr>
-        <th>Orders Placed</th>
-        <td><%= current_user.orders.count %></td>
+        <th>E-mail</th>
+        <td><%= current_user.email %></td>
       </tr>
-    <% end %>
-  </table>
-  <div class='row col-md-6'>
-    <%= link_to 'View My Orders', orders_path, class: 'btn btn-default pull-right' unless current_admin?%>
-    <%= link_to 'Manage My Account', edit_user_path(current_user), class: 'btn btn-default' %>
-    <%= link_to 'Manage Venue', edit_admin_venue_path(name: @venue.slug), class: 'btn btn-default' if venue_admin_only? %>
-    <%= link_to 'View My Events', venue_path(name: @venue.slug), class: 'btn btn-default' if venue_admin_only? %>
-    <%= link_to 'Manage Venues', venues_path, class: 'btn btn-default' if platform_admin? %>
-  </div>
-</div>
-
-<% if !current_admin? %>
-  <div class="center">
-    <%= link_to "Sell With Us", new_venue_path, class: "btn btn-lg btn-primary" %>
-  </div>
-<% end %>
-
-<% if platform_admin? %>
-<br />
-  <div class="well table-responsive row col-md-7">
-    <h2>Pending Venues</h2>
-    <table class="table">
+      <tr>
+        <th>Date Registered</th>
+        <td><%= current_user.date_registered %></td>
+      </tr>
+      <% if venue_admin_only? %>
+        <tr>
+          <th>Venue</th>
+          <td><%= @venue.name %><%= link_to 'Manage Venue', edit_admin_venue_path(name: @venue.slug), class: 'btn btn-sm btn-default pull-right' %></td>
+        </tr>
+      <% else %>
+        <tr>
+          <th>Orders Placed</th>
+          <td><%= current_user.orders.count %><%= link_to 'View My Orders', orders_path, class: 'btn btn-sm btn-default pull-right' unless current_admin?%></td>
+        </tr>
+      <% end %>
     </table>
+    <div class='row col-md-6'>
+      <%= link_to 'Manage My Account', edit_user_path(current_user), class: 'btn btn-default' %>
+      <%= link_to 'View My Events', venue_path(name: @venue.slug), class: 'btn btn-default' if venue_admin_only? %>
+      <%= link_to 'Manage Venues', venues_path, class: 'btn btn-default' if platform_admin? %>
+    </div>
   </div>
-<% end %>
+
+  <% if !current_admin? %>
+    <div class="sell-btn">
+      <%= link_to "Sell With Us", new_venue_path, class: "btn btn-lg btn-primary shadow" %>
+    </div>
+  <% end %>
+
+  <% if platform_admin? %>
+  <br />
+    <div class="well table-responsive row col-md-7">
+      <h2>Pending Venues</h2>
+      <table class="table">
+      </table>
+    </div>
+  <% end %>
+</div>

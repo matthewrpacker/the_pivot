@@ -1,52 +1,62 @@
 <div class="page-content">
   <h1>Order History</h1>
-  <% @orders.each do |order| %>
-    <div class="well col-md-8 table-responsive" id="order-<%= order.id %>">
-      <table class="table">
-        <thead>
-          <tr>
-            <td colspan="5" class="text-left">
-              <strong>Order # <%= order.id %></strong>
-            </td>
-          <tr>
-            <th>Date Placed</th>
-            <th>Number of Events</th>
-            <th>Total Tickets</th>
-            <th>Total</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= order.date %></td>
-            <td><%= order.total_events %></td>
-            <td><%= order.total_tickets %></td>
-            <td><%= number_to_currency(order.total) %></td>
-            <td><%= order.status %></td>
-          </tr>
-          <td colspan="5" class="text-right">
-            <p><strong><%= link_to "Order Details", order_path(order), class:'btn btn-primary' %></strong></p>
-            <% if order.ordered? %>
-              <%= form_tag charges_path do %>
-                <%= hidden_field_tag :orderid, order.id %>
-                <article>
-                  <% if flash[:error].present? %>
-                    <div id="error_explanation">
-                      <p><%= flash[:error] %></p>
-                    </div>
-                  <% end %>
-                </article>
-                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                  data-description="Order #<%= order.id %>"
-                  data-amount="<%= order.total_in_cents %>"
-                  data-locale="auto">
-                </script>
-              <% end %>
-            <% end %>
-          </td>
-        </tbody>
-      </table>
+  <% if @orders.empty? %>
+    <div class="well center-order">
+      <center>
+        <h2>You have no orders yet</h2>
+        <div><%= image_tag("https://i.imgur.com/ldtpOON.gif", class: 'cry-image') %></div>
+        <h3>Time to make some memories at one of the many incredible <%= link_to "events", events_path %> coming soon!</h3>
+      </center>
     </div>
+  <% else %>
+    <% @orders.each do |order| %>
+      <div class="well col-md-8 table-responsive" id="order-<%= order.id %>">
+        <table class="table">
+          <thead>
+            <tr>
+              <td colspan="5" class="text-left">
+                <strong>Order # <%= order.id %></strong>
+              </td>
+            <tr>
+              <th>Date Placed</th>
+              <th>Number of Events</th>
+              <th>Total Tickets</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= order.date %></td>
+              <td><%= order.total_events %></td>
+              <td><%= order.total_tickets %></td>
+              <td><%= number_to_currency(order.total) %></td>
+              <td><%= order.status %></td>
+            </tr>
+            <td colspan="5" class="text-right">
+              <p><strong><%= link_to "Order Details", order_path(order), class:'btn btn-primary' %></strong></p>
+              <% if order.ordered? %>
+                <%= form_tag charges_path do %>
+                  <%= hidden_field_tag :orderid, order.id %>
+                  <article>
+                    <% if flash[:error].present? %>
+                      <div id="error_explanation">
+                        <p><%= flash[:error] %></p>
+                      </div>
+                    <% end %>
+                  </article>
+                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                    data-description="Order #<%= order.id %>"
+                    data-amount="<%= order.total_in_cents %>"
+                    data-locale="auto">
+                  </script>
+                <% end %>
+              <% end %>
+            </td>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
   <% end %>
 </div>
