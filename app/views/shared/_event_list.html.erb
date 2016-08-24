@@ -12,7 +12,7 @@
             <th>Date</th>
             <th>Price</th>
             <th class="text-center">Purchase</th>
-            <% if current_admin? %>
+            <% if venue_admin? %>
               <th class="text-center">Edit</th>
             <% end %>
           </tr>
@@ -30,7 +30,7 @@
               <td>
                   <%= button_to "#{btn_label}", cart_events_path(event_id: event.id), class: "center_button btn btn-#{btn_class}", disabled: status %>
               </td>
-              <% if current_admin? %>
+              <% if venue_admin? %>
                 <td>
                   <%= link_to "Edit", edit_admin_event_path(event), class: "center_button btn btn-default" %>
                 </td>

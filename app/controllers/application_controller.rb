@@ -1,12 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user,
-                :verify_logged_in,
                 :categories,
-                :current_admin?,
-                :platform_admin?,
-                :current_venue_admin
-  before_action :set_cart
+                :current_admins_venue
+
+  before_action :set_cart,
+                :authorize!
 
   def set_cart
     @cart = Cart.new(session[:cart])
@@ -16,26 +15,31 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def verify_logged_in
-    unless current_user
-      flash[:danger] = "Please login to view this page"
-      redirect_to login_path
+  def authorize!
+    unless authorized?
+      unless current_user
+        flash[:danger] = "Not expecting this message? Try \
+          #{view_context.link_to('logging in', login_path)}."
+      end
+      render file: '/public/404', status => 404, :layout => true
     end
   end
 
-  def current_admin?
-    current_user && (current_user.venue_admin? || current_user.platform_admin?)
-  end
-
-  def platform_admin?
-    current_user && current_user.platform_admin?
-  end
-
-  def current_venue_admin
-    Venue.find_by(admin: current_user) if current_admin?
+  def current_admins_venue
+    Venue.find_by(admin: current_user) if current_user.venue_admin?
   end
 
   def categories
     @categories = Category.all
+  end
+
+  private
+
+  def authorized?
+    current_permission.allow?(params[:controller], params[:action])
+  end
+
+  def current_permission
+    @current_permission ||= PermissionsService.new(current_user)
   end
 end

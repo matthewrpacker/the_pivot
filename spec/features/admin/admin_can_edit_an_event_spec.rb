@@ -20,7 +20,8 @@ RSpec.feature "Admin can edit an event" do
       fill_in "Title", with: "The Book of Mormon"
       click_on "Update Event"
 
-      expect(current_path).to eq(event_path(Event.first.venue, Event.first))
+      expect(current_path).
+        to eq(event_path(Event.first.venue, Event.first))
       expect(page).to have_content("Event Updated Successfully!")
       within('.event-content') do
         expect(page).to_not have_content(event.title)

@@ -6,7 +6,7 @@ module SessionsHelper
   def redirect_based_on_referrer
     if login_referrer == 'cart'
       redirect_to cart_index_path
-    elsif current_admin?
+    elsif current_user.venue_admin?
       redirect_to admin_dashboard_index_path
     else
       redirect_to dashboard_path

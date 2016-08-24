@@ -38,6 +38,11 @@ RSpec.feature "User can apply to add a venue" do
                                     You will hear from us within 3-5 \
                                     business days."
       expect(Venue.last.status).to eq "offline"
+      expect(Venue.last.name).to eq("Turing Stadium")
+      expect(Venue.last.city).to eq("Chicago")
+      expect(Venue.last.state).to eq("IL")
+      expect(Venue.last.capacity).to eq(50000)
+      expect(Venue.last.image_path).to eq("http://i.imgur.com/lVgLlvg.jpg")
       expect(current_path).to eq(dashboard_path)
     end
 

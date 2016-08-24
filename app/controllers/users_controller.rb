@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-  include UsersHelper
-
-  before_action :verify_logged_in, only: [:show, :edit]
-
   def new
     @user = User.new
   end
@@ -21,13 +17,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to admin_dashboard_index_path if current_admin?
+    redirect_to admin_dashboard_index_path if current_user.venue_admin?
   end
 
   def edit
     if current_user.id.to_s != params[:id]
-      flash[:danger] = "You can only edit your own account"
-      redirect_to edit_user_path(current_user)
+      render file: '/public/404', status => 404, :layout => true
     end
   end
 

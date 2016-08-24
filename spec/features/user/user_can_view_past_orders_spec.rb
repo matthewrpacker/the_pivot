@@ -29,11 +29,15 @@ RSpec.feature "User can view past orders" do
 
     scenario "when they don't have any previous orders" do
       user = create(:user)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(user)
 
       visit orders_path
 
-      expect(page).to have_content("You have no orders yet Time to make some memories at one of the many incredible events coming soon!")
+      expect(page).to have_content("You have no orders yet " \
+        "Time to make some memories at one of the many incredible " \
+        "events coming soon!")
     end
   end
 end

@@ -14,6 +14,16 @@ class PermissionsService
   def allow?(controller, action)
     @controller = controller
     @action = action
+    case
+    when platform_admin?
+      platform_admin_permissions
+    when venue_admin?
+      venue_admin_permissions
+    when registered_customer?
+      registered_customer_permissions
+    else
+      guest_user_permissions
+    end
   end
 
   private
@@ -56,7 +66,7 @@ class PermissionsService
     return true if controller == 'cart_events'
     return true if controller == 'categories'
     return true if controller == 'charges'
-    return true if controller == 'events'
+    return true if controller == 'events' && action.in?(%w(index show))
     return true if controller == 'home'
     return true if controller == 'orders'
     return true if controller == 'users'

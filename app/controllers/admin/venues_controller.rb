@@ -1,4 +1,4 @@
-class Admin::VenuesController < Admin::BaseController
+class Admin::VenuesController < ApplicationController
   before_action :set_venue, only: [:edit, :update]
   before_action :verify_owner, only: [:edit]
 
@@ -31,7 +31,7 @@ class Admin::VenuesController < Admin::BaseController
   end
 
   def verify_owner
-    unless current_user == @venue.admin
+    unless current_user == @venue.admin || current_user.platform_admin?
       render file: '/public/404', status => 404, layout: true
     end
   end

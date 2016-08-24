@@ -1,56 +1,95 @@
 require 'rails_helper'
 
 RSpec.feature "User information is secure from others" do
-  scenario "guest attempts to visit a user's show page" do
-    place_order
+  context "guest user" do
+    scenario "guest attempts to visit a user's show page" do
+      place_order
 
-    visit order_path(Order.first)
+      visit order_path(Order.first)
 
-    expect(page).to have_content("Please login to view this page")
-    expect(current_path).to eq(login_path)
+      expect(page).
+        to have_css('img[src*="http://i.imgur.com/F4zRA3g.jpg"]')
+      expect(page).to have_content("Not expecting this message? \
+        Try logging in.")
+    end
 
-    visit dashboard_path
+    scenario "guest attempts to visit the dashboard" do
+      visit dashboard_path
 
-    expect(page).to have_content("Please login to view this page")
-    expect(current_path).to eq(login_path)
+      expect(page).
+        to have_css('img[src*="http://i.imgur.com/F4zRA3g.jpg"]')
+      expect(page).to have_content("Not expecting this message? \
+        Try logging in.")
+    end
 
-    visit orders_path
+    scenario "guest attempts to visit the orders path" do
+      visit orders_path
 
-    expect(page).to have_content("Please login to view this page")
-    expect(current_path).to eq(login_path)
+      expect(page).
+        to have_css('img[src*="http://i.imgur.com/F4zRA3g.jpg"]')
+      expect(page).to have_content("Not expecting this message? \
+        Try logging in.")
+    end
 
-    visit admin_dashboard_index_path
-    expect(page).to have_css('img[src*="http://i.imgur.com/F4zRA3g.jpg"]')
+    scenario "guest attemps to visit the admin dashboard" do
+      visit admin_dashboard_index_path
 
-    visit events_path
-    click_on "Add to Cart"
+      expect(page).
+        to have_css('img[src*="http://i.imgur.com/F4zRA3g.jpg"]')
+      expect(page).to have_content("Not expecting this message? \
+        Try logging in.")
+    end
 
-    visit cart_index_path
+    scenario "guest attempts to view the edit user path" do
+      create(:user)
 
-    expect(page).to have_link("Login or Create Account to Checkout")
+      visit edit_user_path(User.first)
 
-    visit edit_user_path(User.first)
-    expect(page).to have_content("Please login to view this page")
+      expect(page).
+        to have_css('img[src*="http://i.imgur.com/F4zRA3g.jpg"]')
+      expect(page).to have_content("Not expecting this message? \
+        Try logging in.")
+    end
   end
 
-  scenario "logged-in user attempts to visit another user's show page" do
-    place_order
+  context "logged-in registered customer" do
+    scenario "they attempt to visit another user's order page" do
+      place_order
+      nefarious_user = create(:user)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(nefarious_user)
 
-    user1 = create(:user)
-    user2 = create(:user)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+      visit order_path(Order.first)
 
-    visit order_path(Order.first)
+      expect(page).
+        to have_css('img[src*="http://i.imgur.com/F4zRA3g.jpg"]')
+    end
 
-    expect(page).to have_content("You do not have the proper permissions to view that page")
-    expect(current_path).to eq(dashboard_path)
+    scenario "they attempt to visit the admin dashboard" do
+      nefarious_user = create(:user)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(nefarious_user)
 
-    visit admin_dashboard_index_path
-    expect(page).to have_css('img[src*="http://i.imgur.com/F4zRA3g.jpg"]')
+      visit admin_dashboard_index_path
 
-    visit edit_user_path(user2)
-    expect(page).to have_content("You can only edit your own account")
-    expect(current_path).to eq(edit_user_path(user1))
+      expect(page).
+        to have_css('img[src*="http://i.imgur.com/F4zRA3g.jpg"]')
+    end
+
+    scenario "they attempt to visit the edit page for another user" do
+      innocent_user = create(:user)
+      nefarious_user = create(:user)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(nefarious_user)
+
+      visit edit_user_path(innocent_user)
+
+      expect(page).
+        to have_css('img[src*="http://i.imgur.com/F4zRA3g.jpg"]')
+    end
   end
 end
 

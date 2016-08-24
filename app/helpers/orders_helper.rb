@@ -1,8 +1,7 @@
 module OrdersHelper
   def verify_user
     unless current_user == @order.user
-      flash[:danger] = "You do not have the proper permissions to view that page"
-      redirect_to dashboard_path
+      render file: '/public/404', status => 404, :layout => true
     end
   end
 

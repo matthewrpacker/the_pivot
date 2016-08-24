@@ -23,16 +23,4 @@ RSpec.feature "User can edit account" do
     expect(page).to have_content("matt@example.com")
     expect(page).to have_no_content(user.username)
   end
-
-  scenario "user cannot change another user's account" do
-    user1 = create(:user)
-    user2 = create(:user)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
-
-    visit edit_user_path(user2)
-
-    expect(page).to have_no_content(user2.username)
-    expect(current_path).to eq(edit_user_path(user1))
-    expect(page).to have_content("You can only edit your own account")
-  end
 end

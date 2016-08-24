@@ -1,7 +1,5 @@
 class OrdersController < ApplicationController
   include OrdersHelper
-
-  before_action :verify_logged_in, only: [:index]
   before_action :set_order, only: [:show]
   before_action :verify_user, only: [:show]
 

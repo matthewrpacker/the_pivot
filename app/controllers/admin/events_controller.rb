@@ -1,4 +1,4 @@
-class Admin::EventsController < Admin::BaseController
+class Admin::EventsController < ApplicationController
   before_action :set_event, only: [:edit, :update, :destroy]
   before_action :verify_permissions, only: [:edit]
 
@@ -50,9 +50,9 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def params_with_venue
-    return event_params if platform_admin?
+    return event_params if current_user.platform_admin?
     form_params = event_params
-    form_params[:venue_id] = current_venue_admin.id
+    form_params[:venue_id] = current_admins_venue.id
     form_params
   end
 
@@ -61,7 +61,8 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def verify_permissions
-    unless current_user && @event.venue.admin == current_user
+    unless @event.venue.admin == current_admins_venue.admin ||
+           current_user.platform_admin?
       render file: '/public/404', status => 404, :layout => true
     end
   end
