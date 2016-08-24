@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "Admin can edit an event" do
-  context "registered business admin" do
-    scenario "with valid event updates" do
+  context "registered venue admin" do
+    scenario "they visit their dashboard with valid event updates" do
       event = create(:event)
       admin = event.venue.admin
       allow_any_instance_of(ApplicationController).

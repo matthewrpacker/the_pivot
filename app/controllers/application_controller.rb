@@ -26,7 +26,9 @@ class ApplicationController < ActionController::Base
   end
 
   def current_admins_venue
-    Venue.find_by(admin: current_user) if current_user.venue_admin?
+    if current_user
+      Venue.find_by(admin: current_user) if current_user.venue_admin?
+    end
   end
 
   def categories

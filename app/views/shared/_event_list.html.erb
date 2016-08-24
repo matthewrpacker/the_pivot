@@ -30,7 +30,7 @@
               <td>
                   <%= button_to "#{btn_label}", cart_events_path(event_id: event.id), class: "center_button btn btn-#{btn_class}", disabled: status %>
               </td>
-              <% if venue_admin? %>
+              <% if platform_admin? || event.venue == current_admins_venue %>
                 <td>
                   <%= link_to "Edit", edit_admin_event_path(event), class: "center_button btn btn-default" %>
                 </td>
