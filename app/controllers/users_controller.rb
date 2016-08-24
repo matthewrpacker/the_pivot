@@ -22,7 +22,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if current_user.id.to_s != params[:id]
+    if current_user.platform_admin?
+      session[:last_url] = request.referrer
+    elsif current_user.id.to_s != params[:id]
       render file: '/public/404', status => 404, :layout => true
     end
   end
@@ -30,7 +32,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to dashboard_path
+      flash[:success] = "Account Updated Successfully!"
+      if session[:last_url]
+        redirect_to session[:last_url]
+      else
+        redirect_to dashboard_path
+      end
     else
       render :edit
     end

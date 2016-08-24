@@ -72,7 +72,7 @@ RSpec.feature "Admin can use cancel buttons" do
 
     visit admin_dashboard_index_path
 
-    click_on "View My Events"
+    click_on "Manage Events"
 
     expect(page).to have_content venue.name
     expect(current_path).to eq venue_path(venue.slug)

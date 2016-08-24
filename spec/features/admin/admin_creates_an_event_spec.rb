@@ -14,7 +14,7 @@ RSpec.feature 'Admin creates an event' do
       expect(venue.events.count).to eq(0)
 
       visit admin_dashboard_index_path
-      click_on 'View My Events'
+      click_on 'Manage Events'
       click_on 'Add New Event'
 
       expect(current_path).to eq(new_admin_event_path)

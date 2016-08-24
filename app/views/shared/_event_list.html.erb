@@ -14,6 +14,7 @@
             <th class="text-center">Purchase</th>
             <% if venue_admin? %>
               <th class="text-center">Edit</th>
+              <th class="text-center">Delete</th>
             <% end %>
           </tr>
         </thead>
@@ -33,6 +34,7 @@
               <% if platform_admin? || event.venue == current_admins_venue %>
                 <td>
                   <%= link_to "Edit", edit_admin_event_path(event), class: "center_button btn btn-default" %>
+                  <%= link_to "Delete", admin_event_path(event), method: :delete, class: "center_button btn btn-default" %>
                 </td>
               <% end %>
             </tr>

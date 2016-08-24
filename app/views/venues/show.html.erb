@@ -2,25 +2,22 @@
   <div class="well col-md-10 padded">
     <h1><%= @venue.name %></h1>
     <%= image_tag(@venue.image_path, alt: "#{@venue.name} pic", class: 'venue-image') %>
-    <div>
-      <p>
-        <strong>Location:</strong> <%= @venue.location %>
-      </p>
-      <p>
-        <strong>Capacity:</strong> <%= @venue.capacity %>
-      </p>
-      <% if this_venues_admin? %>
+    <div class="venue-details">
+      <% if platform_admin? %>
+        <p><strong>Venue Admin:</strong> <%= @venue.admin.username %> (<%= link_to 'Edit', edit_user_path(@venue.admin) %>)</p>
+      <% end %>
+      <p><strong>Location:</strong> <%= @venue.location %></p>
+      <p><strong>Capacity:</strong> <%= @venue.capacity %></p>
+      <% if this_venues_admin? || platform_admin? %>
         <p>
           <%= link_to 'Add New Event', new_admin_event_path, class: 'center_button btn btn-success' %>
           <br />
-          <%= link_to 'Back', request.referrer, class: 'center_button btn btn-primary btn-md top-margin' %>
-        </p>
-      <% end %>
-      <% if platform_admin? %>
-        <p>
-          <%= link_to 'Delete Venue', admin_venue_path(@venue), method: :delete, class: 'center_button btn btn-danger' %>
-          <br />
-          <%= link_to 'Back', request.referrer, class: 'center_button btn btn-primary btn-md top-margin' %>
+          <%= link_to 'Edit Venue', edit_admin_venue_path(@venue), class: 'center_button btn btn-default btn-md top-margin' %>
+          <% if platform_admin? %>
+            <%= link_to 'Delete Venue', admin_venue_path(@venue), method: :delete, class: 'center_button btn btn-danger btn-md top-margin' %>
+          <% end %>
+          <br /><br />
+          <h4><strong><%= link_to '<< Back', request.referrer %></strong></h4>
         </p>
       <% end %>
     </div>
@@ -33,7 +30,7 @@
             <th>Date</th>
             <th>Price</th>
             <th>Purchase</th>
-            <% if this_venues_admin? %>
+            <% if this_venues_admin? || platform_admin? %>
               <th>Edit</th>
               <th>Delete</th>
             <% end %>
@@ -49,7 +46,7 @@
               <td>
                 <%= button_to "Add to Cart", cart_events_path(event_id: event.id), class: "center_button btn btn-sm btn-primary" %>
               </td>
-              <% if this_venues_admin? %>
+              <% if this_venues_admin? || platform_admin? %>
                 <td>
                   <%= link_to 'Edit', edit_admin_event_path(event), class: 'center_button btn btn-sm btn-default' %>
                 </td>

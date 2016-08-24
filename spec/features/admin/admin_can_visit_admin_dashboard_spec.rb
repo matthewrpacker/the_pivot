@@ -21,7 +21,7 @@ RSpec.feature "Admin can view dashboard" do
         expect(page).to have_content venue.name
       end
       expect(page).to have_link "Manage My Account"
-      expect(page).to have_link "View My Events"
+      expect(page).to have_link "Manage Events"
 
       expect(page).not_to have_content "You cannot access admin content!"
     end

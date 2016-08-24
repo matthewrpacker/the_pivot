@@ -34,7 +34,11 @@ class Admin::EventsController < ApplicationController
   def destroy
     @event.destroy
     flash[:success] = "Event Removed Successfully!"
-    redirect_to venue_path(@event.venue)
+    if current_user.platform_admin?
+      redirect_to events_path
+    else
+      redirect_to venue_path(@event.venue)
+    end
   end
 
   private
@@ -61,8 +65,8 @@ class Admin::EventsController < ApplicationController
   end
 
   def verify_permissions
-    unless @event.venue.admin == current_admins_venue.admin ||
-           current_user.platform_admin?
+    unless current_user.platform_admin? ||
+           @event.venue.admin == current_admins_venue.admin
       render file: '/public/404', status => 404, :layout => true
     end
   end

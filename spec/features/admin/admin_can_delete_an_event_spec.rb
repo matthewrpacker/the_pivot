@@ -12,7 +12,7 @@ RSpec.feature "Admin can delete an event" do
 
       visit admin_dashboard_index_path
 
-      click_on "View My Events"
+      click_on "Manage Events"
 
       expect(current_path).to eq(venue_path(venue))
 
@@ -67,6 +67,46 @@ RSpec.feature "Admin can delete an event" do
       visit event_path(event.venue, event)
 
       expect(page).to_not have_button("Delete")
+    end
+  end
+
+  context "registered platform admin" do
+    scenario "logged-in platform admin visits events index" do
+      admin = create(:platform_admin)
+      events = create_list(:event, 2)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(admin)
+
+      visit events_path
+
+      within("#event-#{events.first.id}") do
+        click_on "Delete"
+      end
+
+      expect(current_path).to eq(events_path)
+
+      within('table') do
+        expect(page).to_not have_content('event.title')
+      end
+    end
+
+    scenario "logged-in platform admin visits event show page" do
+      admin = create(:platform_admin)
+      event = create(:event)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(admin)
+
+      visit event_path(event.venue, event)
+
+      click_on "Delete"
+
+      expect(current_path).to eq(events_path)
+
+      within('table') do
+        expect(page).to_not have_content(event.title)
+      end
     end
   end
 end

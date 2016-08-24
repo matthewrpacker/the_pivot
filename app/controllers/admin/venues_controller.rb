@@ -8,7 +8,7 @@ class Admin::VenuesController < ApplicationController
   def update
     if @venue.update_attributes(venue_params)
       flash[:success] = "#{@venue.name} Updated Successfully!"
-      redirect_to admin_dashboard_index_path
+      redirect_to venue_path(@venue)
     else
       flash.now[:danger] = @venue.errors.full_messages.join(', ')
       render :edit

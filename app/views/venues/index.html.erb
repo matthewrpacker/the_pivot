@@ -13,7 +13,9 @@
           <strong>Location:</strong> <%= venue.location %>
         </p>
         <%= link_to "View Venue", venue_path(venue), class: "btn btn-sm btn-primary" %>
-        <%= link_to "Delete", admin_venue_path(venue), method: :delete, class: "btn btn-sm btn-danger" if platform_admin? %>
+        <br />
+        <%= link_to "Edit", edit_admin_venue_path(venue), class: "btn btn-sm btn-default top-margin" if venue_admin? %>
+        <%= link_to "Delete", admin_venue_path(venue), method: :delete, class: "btn btn-sm btn-danger top-margin" if platform_admin? %>
       </div>
     </div>
   <% end %>
