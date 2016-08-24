@@ -2,9 +2,9 @@ class Seed
   def initialize
     create_roles
     create_categories
-    create_venues
     create_nate_venue_admin
     create_venue_admins
+    create_venues
     create_events
     create_josh_customer
     create_customers
@@ -46,6 +46,28 @@ class Seed
     puts "Category #{Category.last.title} created."
   end
 
+  def create_nate_venue_admin
+    User.create!(
+      username: "nate@turing.io",
+      email: "nate@turing.io",
+      password: "password",
+    )
+    User.last.roles << Role.where.not(name: 'platform_admin')
+    puts "Venue Admin Nate created."
+  end
+
+  def create_venue_admins
+    19.times do |i|
+      User.create!(
+      username: "#{Faker::Internet.user_name}_admin_#{i + 1}",
+      email: "admin_#{i + 1}_#{Faker::Internet.safe_email}",
+      password: "password"
+      )
+      User.last.roles << Role.where.not(name: 'platform_admin')
+      puts "Venue Admin #{i + 1} created."
+    end
+  end
+
   def create_venues
     Venue.create!(
       name: 'Wrigley Field',
@@ -53,7 +75,8 @@ class Seed
       state: 'IL',
       capacity: 41268,
       image_path: 'http://i.imgur.com/NqWzxPB.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(1)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -62,7 +85,8 @@ class Seed
       state: 'CO',
       capacity: 9525,
       image_path: 'http://i.imgur.com/JGQP86m.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(2)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -71,7 +95,8 @@ class Seed
       state: 'NY',
       capacity: 54251,
       image_path: 'http://i.imgur.com/6kpS9z5.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(3)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -80,7 +105,8 @@ class Seed
       state: 'CO',
       capacity: 5000,
       image_path: 'http://i.imgur.com/SIccgUE.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(4)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -89,7 +115,8 @@ class Seed
       state: 'CA',
       capacity: 2265,
       image_path: 'http://i.imgur.com/3FT6OWs.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(5)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -98,7 +125,8 @@ class Seed
       state: 'NY',
       capacity: 2804,
       image_path: 'http://i.imgur.com/7kSGPAh.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(6)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -107,7 +135,8 @@ class Seed
       state: 'AU',
       capacity: 6000,
       image_path: 'http://i.imgur.com/ZhZQ5qw.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(7)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -116,7 +145,8 @@ class Seed
       state: 'NY',
       capacity: 18200,
       image_path: 'http://i.imgur.com/AlRnvKR.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(8)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -125,7 +155,8 @@ class Seed
       state: 'CO',
       capacity: 18007,
       image_path: 'http://i.imgur.com/7OeaBay.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(9)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -134,7 +165,8 @@ class Seed
       state: 'WA',
       capacity: 27500,
       image_path: 'http://i.imgur.com/Mzv1JU5.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(10)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -143,7 +175,8 @@ class Seed
       state: 'NY',
       capacity: 5251,
       image_path: 'http://i.imgur.com/APMN5QN.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(11)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -152,7 +185,8 @@ class Seed
       state: 'CA',
       capacity: 125000,
       image_path: 'http://i.imgur.com/81CNDWf.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(12)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -161,7 +195,8 @@ class Seed
       state: 'PA',
       capacity: 107282,
       image_path: 'http://i.imgur.com/9OcLwCU.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(13)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -170,7 +205,8 @@ class Seed
       state: 'AZ',
       capacity: 63400,
       image_path: 'http://i.imgur.com/niiHcUO.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(14)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -179,7 +215,8 @@ class Seed
       state: 'MN',
       capacity: 17000,
       image_path: 'http://i.imgur.com/zIJMgUm.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(15)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -188,7 +225,8 @@ class Seed
       state: 'PA',
       capacity: 38362,
       image_path: 'http://i.imgur.com/ZhpUui3.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(16)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -197,7 +235,8 @@ class Seed
       state: 'TX',
       capacity: 80000,
       image_path: 'http://i.imgur.com/Q5qbKTi.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(17)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -206,7 +245,8 @@ class Seed
       state: 'NK',
       capacity: 150000,
       image_path: 'http://i.imgur.com/LqQAAeN.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(18)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -215,7 +255,8 @@ class Seed
       state: 'PI',
       capacity: 20000,
       image_path: 'http://i.imgur.com/hRFfDRE.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(19)
       )
       puts "Venue #{Venue.last.name} created."
     Venue.create!(
@@ -224,7 +265,8 @@ class Seed
       state: 'SP',
       capacity: 99354,
       image_path: 'http://i.imgur.com/piLqdVD.jpg',
-      status: 0
+      status: 0,
+      admin: User.find(20)
       )
       puts "Venue #{Venue.last.name} created."
   end
@@ -256,16 +298,6 @@ class Seed
     puts "Customer Josh created."
   end
 
-  def create_nate_venue_admin
-    User.create!(
-      username: "nate@turing.io",
-      email: "nate@turing.io",
-      password: "password",
-    )
-    User.last.roles << Role.where.not(name: 'platform_admin')
-    puts "Venue Admin Nate created."
-  end
-
   def create_customers
     99.times do |i|
       User.create!(
@@ -275,21 +307,6 @@ class Seed
       )
       User.last.roles << Role.find_by(name: 'registered_customer')
       puts "Customer #{i + 1} created."
-    end
-  end
-
-  def create_venue_admins
-    19.times do |i|
-      User.create!(
-        username: "#{Faker::Internet.user_name}_admin_#{i + 1}",
-        email: "admin_#{i + 1}_#{Faker::Internet.safe_email}",
-        password: "password"
-      )
-      User.last.roles << Role.find_by(name: 'venue_admin')
-      puts "Venue Admin #{i + 1} created."
-    end
-    Venue.all.each_with_index do |venue, index|
-      venue.update(admin: User.offset(index).first)
     end
   end
 
