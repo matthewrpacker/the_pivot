@@ -47,20 +47,7 @@ RSpec.feature "User can apply to add a venue" do
     end
 
     scenario "visit the root path and do not supply image" do
-      user = create(:user)
-      allow_any_instance_of(ApplicationController).
-        to receive(:current_user).
-        and_return(user)
-
-      visit root_path
-
-      click_on "Sell With Us"
-
-      fill_in "City", with: "Chicago"
-      fill_in "State", with: "IL"
-      fill_in "Capacity", with: 50000
-      fill_in "Venue Name", with: "Turing Stadium"
-      click_button "Submit Application"
+      submit_application
 
       expect(page).to have_content "Application submitted! \
                                     You will hear from us within 3-5 \
@@ -133,4 +120,46 @@ RSpec.feature "User can apply to add a venue" do
       expect(page).to_not have_link "Sell With Us"
     end
   end
+
+  context "logged-in registered_customer with submitted application" do
+    scenario "they see status info on dashboard" do
+      submit_application
+
+      expect(page).to_not have_link "Sell With Us"
+      expect(page).to have_content "Thank you for choosing to become " \
+                                   "a certified seller at Nosebleed Tix! " \
+                                   "If you have submitted an application " \
+                                   "within the last 7 days, please be " \
+                                   "patient as we process your request. " \
+                                   "If you are an existing vendor who is " \
+                                   "having trouble with your account or " \
+                                   "have any questions for the Nosebleed " \
+                                   "staff, please contact us here."
+    end
+
+    scenario "they do not see sell with us button on root path" do
+      submit_application
+
+      visit root_path
+
+      expect(page).to_not have_link "Sell With Us"
+    end
+  end
+end
+
+def submit_application
+  user = create(:user)
+  allow_any_instance_of(ApplicationController).
+    to receive(:current_user).
+    and_return(user)
+
+  visit root_path
+
+  click_on "Sell With Us"
+
+  fill_in "City", with: "Chicago"
+  fill_in "State", with: "IL"
+  fill_in "Capacity", with: 50000
+  fill_in "Venue Name", with: "Turing Stadium"
+  click_button "Submit Application"
 end

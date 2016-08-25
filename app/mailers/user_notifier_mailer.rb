@@ -18,4 +18,13 @@ class UserNotifierMailer < ApplicationMailer
       subject: "Thank you for your order - Order ##{@order.id}"
     )
   end
+
+  def send_application_outcome_email(venue, approved)
+    @venue = venue
+    @approved = approved
+    mail(
+      to: @venue.admin.email,
+      subject: "Your application was #{approved ? 'approved!' : 'declined.'}"
+    )
+  end
 end

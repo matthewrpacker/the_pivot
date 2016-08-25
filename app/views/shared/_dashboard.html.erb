@@ -53,7 +53,7 @@
   <% end %>
 
   <% if platform_admin? %>
-    <div class="well table-responsive" id="pending">
+    <div class="well col-md-10 col-md-offset-1 table-responsive" id="pending">
       <h2>Pending Venues</h2>
       <% if @venues.empty? %>
         <div id="no-pending-msg">
@@ -66,7 +66,7 @@
             <th>Location</th>
             <th>Capacity</th>
             <th>Admin</th>
-            <th class="text-center">Action</th>
+            <th class="text-center col-md-2" colspan="2">Action</th>
           </thead>
           <tbody>
             <% @venues.each do |venue| %>
@@ -77,6 +77,8 @@
               <td><%= venue.admin.username %></td>
               <td>
                 <%= button_to "Approve", admin_venues_path, { params: { name: venue.slug }, class: "btn btn-success center_button btn-xs" } %>
+              </td>
+              <td>
                 <%= button_to "Decline", admin_venue_path(venue), { method: :delete, class: "btn btn-danger center_button btn-xs" } %>
               </td>
             </tr>

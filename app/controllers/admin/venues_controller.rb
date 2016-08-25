@@ -19,6 +19,7 @@ class Admin::VenuesController < ApplicationController
   def create
     @venue.update(status: "online")
     @venue.admin.roles << Role.find_by_name("venue_admin")
+    send_outcome_email(true)
     flash[:success] = "#{@venue.name} Approved!"
     redirect_to admin_dashboard_index_path
   end
@@ -26,6 +27,7 @@ class Admin::VenuesController < ApplicationController
   def destroy
     @venue.destroy
     if from_admin_dash?
+      send_outcome_email(false)
       flash[:success] = "#{@venue.name} Declined!"
       redirect_to admin_dashboard_index_path
     else
@@ -58,5 +60,9 @@ class Admin::VenuesController < ApplicationController
 
   def from_admin_dash?
     "/admin/#{request.referrer.split('/').last}" == admin_dashboard_index_path
+  end
+
+  def send_outcome_email(outcome)
+    UserNotifierMailer.send_application_outcome_email(@venue, outcome).deliver
   end
 end

@@ -1,0 +1,9 @@
+<% if @approved %>
+  <h1><%= @venue.name %> has been approved to sell with us!</h1>
+  <p>You are well on your way to making trillions!</p>
+  <p>All the best, <br/ > Nosebleed Tickets</p>
+<% else %>
+  <h1><%= @venue.name %> has been declined to sell with us.</h1>
+  <p>Good luck on your business!</p>
+  <p>All the best, <br/ > Nosebleed Tickets</p>
+<% end %>
