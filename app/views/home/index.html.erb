@@ -7,7 +7,7 @@
     <br><br>
     <center><small>* <sub>Binoculars recommended (particularly the small kind with the handle, like you might expect to see in the audience at an opera or a ballet).</sub></small></center>
   </div>
-  <% if current_user && !venue_admin? %>
+  <% if current_user && !venue_admin? && !venue_exists? %>
     <div class="sell-btn">
       <%= link_to "Sell With Us", new_venue_path, class: "btn btn-lg btn-primary shadow" %>
     </div>

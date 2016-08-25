@@ -1,5 +1,5 @@
 <div class="well center" id="dashboard">
-  <div class="well table-responsive">
+  <div class="well col-md-10 col-md-offset-1">
     <table class="table" id="user_dashboard">
       <tr>
         <th>Username</th>
@@ -36,10 +36,20 @@
       <% end %>
   </div>
 
-  <% if !venue_admin? %>
+  <% if !venue_admin? && venue_exists? %>
+    <div class="well col-md-8 col-md-offset-2">
+      <center>
+        <strong>Thank you for choosing to become a certified seller at Nosebleed Tix!</strong>
+        <br><br />
+        <p><small>If you have submitted an application within the last 7 days, please be patient as we process your request.</small></p>
+        <p><small>If you are an existing vendor who is having trouble with your account or have any questions for the Nosebleed staff, please contact us <%= mail_to "nosebleedtix@gmail.com", "here" %>.</small></p>
+      </center>
+    </div>
+  <% elsif !venue_admin? && !venue_exists? %>
     <div class="sell-btn">
       <%= link_to "Sell With Us", new_venue_path, class: "btn btn-lg btn-primary shadow" %>
     </div>
+  <% else %>
   <% end %>
 
   <% if platform_admin? %>

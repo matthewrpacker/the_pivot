@@ -18,4 +18,8 @@ module ApplicationHelper
   def registered_customer?
     current_user && current_user.registered_customer?
   end
+
+  def venue_exists?
+    Venue.where(admin: current_user).exists?
+  end
 end
