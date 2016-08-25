@@ -18,21 +18,20 @@
           <th>Venue</th>
           <td><%= @venue.name %><%= link_to 'Manage Venue', edit_admin_venue_path(name: @venue.slug), class: 'btn btn-sm btn-default pull-right' %></td>
         </tr>
-      <% else %>
-        <tr>
-          <th>Orders Placed</th>
-          <td><%= current_user.orders.count %><%= link_to 'View My Orders', orders_path, class: 'btn btn-sm btn-default pull-right' unless venue_admin?%></td>
-        </tr>
       <% end %>
+      <tr>
+        <th>Orders Placed</th>
+        <td><%= current_user.orders.count %><%= link_to 'View My Orders', orders_path, class: 'btn btn-sm btn-default pull-right' %></td>
+      </tr>
     </table>
       <center><%= link_to 'Manage My Account', edit_user_path(current_user), class: 'btn btn-default' %></center>
-      <%= link_to 'Manage Events', venue_path(name: @venue.slug), class: 'btn btn-default pull-right' if venue_admin_only? %>
+      <center><%= link_to 'Manage Events', venue_path(name: @venue.slug), class: 'btn btn-default top-margin' if venue_admin_only? %></center>
       <% if platform_admin? %>
-      <br />
-      <center>
-        <%= link_to 'Manage Events', events_path, class: 'btn btn-default top-margin' %>
-        <%= link_to 'Manage Venues', venues_path, class: 'btn btn-default top-margin' %>
-      </center>
+        <br />
+        <center>
+          <%= link_to 'Manage Events', events_path, class: 'btn btn-default top-margin' %>
+          <%= link_to 'Manage Venues', venues_path, class: 'btn btn-default top-margin' %>
+        </center>
       <% end %>
   </div>
 

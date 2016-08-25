@@ -15,8 +15,11 @@
         </p>
         <%= link_to "View Venue", venue_path(venue), class: "btn btn-sm btn-primary" %>
         <br />
-        <%= link_to "Edit", edit_admin_venue_path(venue), class: "btn btn-sm btn-default top-margin" if venue_admin? %>
-        <%= link_to "Delete", admin_venue_path(venue), method: :delete, class: "btn btn-sm btn-danger top-margin" if platform_admin? %>
+        <% if venue_admin? %>
+          <%= link_to "Edit", edit_admin_venue_path(venue), class: "btn btn-sm btn-default top-margin" if proper_role(venue) %>
+          <%= link_to "Edit", edit_admin_venue_path(venue), class: "btn btn-sm btn-default top-margin", disabled: true unless proper_role(venue) %>
+          <%= link_to "Delete", admin_venue_path(venue), method: :delete, class: "btn btn-sm btn-danger top-margin" if platform_admin? %>
+        <% end %>
       </div>
     </div>
   <% end %>
