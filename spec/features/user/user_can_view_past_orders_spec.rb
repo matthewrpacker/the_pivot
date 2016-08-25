@@ -38,6 +38,8 @@ RSpec.feature "User can view past orders" do
       expect(page).to have_content("You have no orders yet " \
         "Time to make some memories at one of the many incredible " \
         "events coming soon!")
+      expect(page).
+        to have_css('img[src*="https://i.imgur.com/ldtpOON.gif"]')
     end
   end
 end

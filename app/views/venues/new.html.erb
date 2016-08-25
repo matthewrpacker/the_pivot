@@ -1,30 +1,4 @@
 <div class="page-content">
-  <h1>Venue Application</h1>
-  <div class="well col-md-7 col-md-offset-2">
-    <%= form_for @venue do |f| %>
-      <div class="form-group">
-        <%= f.label :name, 'Venue Name' %>
-        <%= f.text_field :name, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :city %>
-        <%= f.text_field :city, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :state %>
-        <%= f.text_field :state, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :capacity %>
-        <%= f.number_field :capacity, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :image_path, 'Image URL' %>
-        <%= f.text_field :image_path, class: 'form-control' %>
-      </div>
-      <%= f.hidden_field :status, value: 'offline' %>
-      <%= f.submit "Submit Application", class: 'btn btn-primary top-margin' %>
-      <%= link_to "Cancel", dashboard_path, class: 'btn btn-primary top-margin' %>
-    <% end %>
-  </div>
+  <h1><strong>Venue Application</strong></h1>
+  <%= render partial: 'shared/venue_form', locals: { path: venues_path, label: "Submit Application", cancel_path: dashboard_path } %>
 </div>

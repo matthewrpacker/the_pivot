@@ -1,9 +1,10 @@
 <div class="page-content">
-  <h1>All Events</h1>
-  <%= render partial: "filter" %>
-  <% if venue_admin? %>
-    <%= link_to 'Add New Event', new_admin_event_path, class: 'btn btn-lg btn-success pull-right' %>
-  <% end %>
+  <h1><strong>All Events</strong></h1>
+  <center><%= render partial: "filter" %></center>
+  <center><% if venue_admin? %>
+    <%= link_to 'Back', request.referrer, class: 'btn btn-md btn-primary' if platform_admin? %>
+    <%= link_to 'Add New Event', new_admin_event_path, class: 'btn btn-lg btn-success' %>
+  <% end %></center>
 
   <%= render partial: 'shared/event_list', locals: { btn_label: 'Add to Cart', btn_class: 'primary btn-sm', status: false} %>
 </div>

@@ -13,6 +13,7 @@
 
   #events_list {
     padding-left: 5%;
+    margin-top: 15px;
   }
 
   .center {
@@ -25,6 +26,11 @@
     width: 70%;
     margin-left: 15%;
     text-align: center;
+  }
+
+  .center-form {
+    width: 60%;
+    margin-left: 20%;
   }
 
   .padded {
@@ -138,7 +144,11 @@
   .page-content {
     padding-right: 15px;
     padding-left: 15px;
-    /*padding-bottom: 25px;*/
+  }
+
+  .page-content>h1 {
+    text-align: center;
+    text-shadow: 0px 0px 15px rgba(255,255,255,1);
   }
 
   th, td {
@@ -149,7 +159,7 @@
     color: #232b2b;
     font-size: 20px;
     font-weight: lighter;
-    text-align: right;
+    text-align: left;
   }
 
   .filter-field {
@@ -198,4 +208,8 @@
 
   .top-margin {
     margin-top: 10px;
+  }
+
+  .bottom-margin {
+    margin-bottom: 10px;
   }

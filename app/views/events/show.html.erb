@@ -17,7 +17,7 @@
       <% else %>
         <p><%= button_to 'Add to Cart', cart_events_path(event_id: @event.id), class: 'center_button btn btn-primary' %></p>
         <br />
-        <% if venue_admin? %>
+        <% if platform_admin? || @event.venue == current_admins_venue %>
           <p>
             <%= link_to 'Edit', edit_admin_event_path(@event), class: 'btn btn-default' %>
             <%= link_to "Delete", admin_event_path(@event), method: :delete, class: 'btn btn-sm btn-danger' %>

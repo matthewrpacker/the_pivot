@@ -1,4 +1,4 @@
-<div class="well col-md-7 col-md-offset-2">
+<div class="well center-form">
   <%= form_for(@event, url: path, html: {multipart: true}) do |f| %>
     <div class="form-group">
       <%= f.label :title %>
@@ -23,7 +23,7 @@
     <% if platform_admin? %>
       <div class="form-group">
         <%= f.label :venue_id %>
-        <%= f.select :venue_id, event_venues, class: 'form-control' %>
+        <%= f.select :venue_id, event_venues, {}, class: 'form-control' %>
       </div>
     <% end %>
     <!-- Currently hidden due to this being tentative functionality -->

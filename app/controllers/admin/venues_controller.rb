@@ -40,7 +40,8 @@ class Admin::VenuesController < ApplicationController
       :name,
       :city,
       :state,
-      :capacity
+      :capacity,
+      :image_path
     )
   end
 

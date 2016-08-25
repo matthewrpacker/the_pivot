@@ -1,10 +1,10 @@
 <div class='page-content'>
-  <h1>Edit Account</h1>
+  <h1><strong>Edit Account</strong></h1>
   <div class="well col-md-4 col-md-offset-4">
     <% if platform_admin? && session[:last_url].split('/').last != 'dashboard' %>
-    <%= render partial: 'shared/login_form', locals: {target: platform_admin_edit_venue_admin(params[:id]), path: user_path(platform_admin_edit_venue_admin(params[:id])), button: "Update Account", btn_class: "primary" } %>
+    <%= render partial: 'shared/login_form', locals: {target: platform_admin_edit_venue_admin(params[:id]), path: user_path(platform_admin_edit_venue_admin(params[:id])), button: "Update Account", btn_class: "success" } %>
     <% else %>
-    <%= render partial: 'shared/login_form', locals: {target: current_user, path: user_path(current_user), button: "Update Account", btn_class: "primary" } %>
+    <%= render partial: 'shared/login_form', locals: {target: current_user, path: user_path(current_user), button: "Update Account", btn_class: "success" } %>
     <% end %>
   </div>
 </div>
