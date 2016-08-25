@@ -3,7 +3,6 @@ FactoryGirl.define do
     title
     supporting_act "Norm Macdonald"
     price 199.99
-    image_path
     category
     venue
     date "2014-09-18 12:30:59 -0700"
@@ -14,7 +13,6 @@ FactoryGirl.define do
 
   factory :venue do
     name
-    image_path
     city 'Denver'
     state 'CO'
     capacity 500
@@ -78,9 +76,5 @@ FactoryGirl.define do
 
   sequence :title do |n|
     "Event_#{n}"
-  end
-
-  sequence :image_path do |n|
-    "https://robohash.org/#{n}"
   end
 end

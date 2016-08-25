@@ -1,5 +1,5 @@
 <div class="well center-form">
-  <%= form_for(@event, url: path, html: {multipart: true}) do |f| %>
+  <%= form_for(@event, url: path) do |f| %>
     <div class="form-group">
       <%= f.label :title %>
       <%= f.text_field :title, class: 'form-control' %>
@@ -26,11 +26,6 @@
         <%= f.select :venue_id, event_venues, {}, class: 'form-control' %>
       </div>
     <% end %>
-    <!-- Currently hidden due to this being tentative functionality -->
-    <!-- <div class="form-group">
-      <%#= f.label :upload_image, 'Image' %>
-      <%#= f.file_field :upload_image, class: 'center_button' %>
-    </div> -->
     <%= f.submit "#{button}", class: 'btn btn-primary' %>
     <%= link_to "Cancel", request.referrer, class: 'btn btn-primary' %>
   <% end %>

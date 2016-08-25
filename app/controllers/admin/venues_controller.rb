@@ -8,6 +8,7 @@ class Admin::VenuesController < ApplicationController
   def update
     if @venue.update_attributes(venue_params)
       flash[:success] = "#{@venue.name} Updated Successfully!"
+      @venue.update_image_path
       redirect_to venue_path(@venue)
     else
       flash.now[:danger] = @venue.errors.full_messages.join(', ')
@@ -41,7 +42,7 @@ class Admin::VenuesController < ApplicationController
       :city,
       :state,
       :capacity,
-      :image_path
+      :upload_image
     )
   end
 

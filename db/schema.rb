@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823222736) do
+ActiveRecord::Schema.define(version: 20160825034115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,19 +24,14 @@ ActiveRecord::Schema.define(version: 20160823222736) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
-    t.decimal  "price",                     precision: 9, scale: 2
+    t.decimal  "price",          precision: 9, scale: 2
     t.integer  "category_id"
-    t.datetime "created_at",                                                                        null: false
-    t.datetime "updated_at",                                                                        null: false
-    t.string   "image_path"
-    t.integer  "status",                                            default: 0
-    t.string   "upload_image_file_name"
-    t.string   "upload_image_content_type"
-    t.integer  "upload_image_file_size"
-    t.datetime "upload_image_updated_at"
+    t.datetime "created_at",                                                             null: false
+    t.datetime "updated_at",                                                             null: false
+    t.integer  "status",                                 default: 0
     t.integer  "venue_id"
     t.string   "slug"
-    t.datetime "date",                                              default: '2014-09-18 12:30:59'
+    t.datetime "date",                                   default: '2014-09-18 12:30:59'
     t.text     "supporting_act"
     t.index ["category_id"], name: "index_events_on_category_id", using: :btree
     t.index ["venue_id"], name: "index_events_on_venue_id", using: :btree
@@ -91,15 +86,19 @@ ActiveRecord::Schema.define(version: 20160823222736) do
 
   create_table "venues", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
-    t.text     "image_path", default: "http://i.imgur.com/5p6sEsX.jpg"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.text     "city"
     t.text     "state"
     t.integer  "capacity"
     t.string   "slug"
     t.integer  "user_id"
     t.integer  "status"
+    t.string   "upload_image_file_name"
+    t.string   "upload_image_content_type"
+    t.integer  "upload_image_file_size"
+    t.datetime "upload_image_updated_at"
+    t.text     "image_path"
     t.index ["user_id"], name: "index_venues_on_user_id", using: :btree
   end
 

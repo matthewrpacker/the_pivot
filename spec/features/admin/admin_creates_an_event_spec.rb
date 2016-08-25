@@ -60,39 +60,6 @@ RSpec.feature 'Admin creates an event' do
     end
   end
 
-  # Test is skipped due to this functionality currently being tentative
-  # context 'with valid information and photo' do
-  #   scenario 'logged-in admin visits the events path' do
-  #     admin = create(:admin)
-  #     categories = create_list(:category, 3)
-  #     venue = create(:venue)
-  #
-  #     allow_any_instance_of(ApplicationController).
-  #       to receive(:current_user).
-  #       and_return(admin)
-  #
-  #     visit events_path
-  #     click_on 'Add New Event'
-  #
-  #     fill_in 'Title', with: 'Foo Fighters'
-  #     fill_in 'Supporting Act', with: "Freedom Fighters"
-  #     fill_in 'Price', with: 29.99
-  #     select "#{categories.first.title}", from: 'Category'
-  #     select "#{venue.name}", from: 'Venue'
-  #     # Commented out due to this being a static asset.
-  #     # attach_file('Image', '/Users/Ryan/Desktop/sample.gif')
-  #     click_on 'Add Event'
-  #
-  #     expect(current_path).
-          # to eq(event_path(Event.first.venue, Event.first))
-  #     expect(page).to have_content(Event.first.title)
-  #     expect(page).to have_content(Event.first.supporting_act)
-  #     expect(page).to have_content(Event.first.price)
-  #     expect(page).
-          # to have_css("img[src*='#{Event.first.venue.image_path}']")
-  #   end
-  # end
-
   context 'unauthorized user' do
     scenario "logged-in venue admin can't create other venue event" do
       venues = create_list(:venue, 2)

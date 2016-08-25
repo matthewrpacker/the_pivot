@@ -13,7 +13,7 @@ RSpec.feature "User can apply to add a venue" do
   end
 
   context "registered user" do
-    scenario "visit the root path" do
+    scenario "visit the root path and supply image" do
       user = create(:user)
       allow_any_instance_of(ApplicationController).
         to receive(:current_user).
@@ -24,13 +24,12 @@ RSpec.feature "User can apply to add a venue" do
       click_on "Sell With Us"
 
       expect(current_path).to eq(new_venue_path)
-      expect(page).to_not have_content("Status")
 
       fill_in "City", with: "Chicago"
       fill_in "State", with: "IL"
       fill_in "Capacity", with: 50000
       fill_in "Venue Name", with: "Turing Stadium"
-      fill_in "Image URL", with: "http://i.imgur.com/lVgLlvg.jpg"
+      attach_file('Image', 'spec/files/images/test_image.png')
 
       click_button "Submit Application"
 
@@ -42,7 +41,37 @@ RSpec.feature "User can apply to add a venue" do
       expect(Venue.last.city).to eq("Chicago")
       expect(Venue.last.state).to eq("IL")
       expect(Venue.last.capacity).to eq(50000)
-      expect(Venue.last.image_path).to eq("http://i.imgur.com/lVgLlvg.jpg")
+      expect(Venue.last.image_path).
+        to_not eq("http://i.imgur.com/5p6sEsX.jpg")
+      expect(current_path).to eq(dashboard_path)
+    end
+
+    scenario "visit the root path and do not supply image" do
+      user = create(:user)
+      allow_any_instance_of(ApplicationController).
+        to receive(:current_user).
+        and_return(user)
+
+      visit root_path
+
+      click_on "Sell With Us"
+
+      fill_in "City", with: "Chicago"
+      fill_in "State", with: "IL"
+      fill_in "Capacity", with: 50000
+      fill_in "Venue Name", with: "Turing Stadium"
+      click_button "Submit Application"
+
+      expect(page).to have_content "Application submitted! \
+                                    You will hear from us within 3-5 \
+                                    business days."
+      expect(Venue.last.status).to eq "offline"
+      expect(Venue.last.name).to eq("Turing Stadium")
+      expect(Venue.last.city).to eq("Chicago")
+      expect(Venue.last.state).to eq("IL")
+      expect(Venue.last.capacity).to eq(50000)
+      expect(Venue.last.image_path).
+        to eq("http://i.imgur.com/5p6sEsX.jpg")
       expect(current_path).to eq(dashboard_path)
     end
 
@@ -70,8 +99,6 @@ RSpec.feature "User can apply to add a venue" do
 
       fill_in "Venue Name", with: existing_venue.name
       fill_in "Capacity", with: 50000
-      fill_in "Image URL", with: "http://i.imgur.com/lVgLlvg.jpg"
-
       click_button "Submit Application"
 
       expect(page).to have_content "Venue Application"

@@ -23,7 +23,6 @@ class Admin::EventsController < ApplicationController
   def update
     if @event.update_attributes(params_with_venue)
       flash[:success] = "Event Updated Successfully!"
-      @event.update_image_path
       redirect_to event_path(@event.venue, @event)
     else
       flash.now[:danger] = @event.errors.full_messages.join(', ')

@@ -32,7 +32,7 @@ class VenuesController < ApplicationController
                                   :city,
                                   :state,
                                   :capacity,
-                                  :image_path,
+                                  :upload_image,
                                   :status)
   end
 
