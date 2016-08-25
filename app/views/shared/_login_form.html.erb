@@ -14,7 +14,11 @@
       <%= f.label :password %>
       <%= f.password_field :password %>
     </p>
-    <%= link_to "Cancel", request.referrer, class: "btn btn-primary top-margin" %>
+    <% if request.referrer %>
+      <%= link_to "Cancel", request.referrer, class: "btn btn-primary top-margin" %>
+    <% else %>
+      <%= link_to "Cancel", root_path, class: "btn btn-primary top-margin" %>
+    <% end %>
     <%= f.submit button, class: "btn btn-#{btn_class} top-margin"%>
   <% end %>
 </div>

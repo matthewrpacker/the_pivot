@@ -8,10 +8,10 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find_by(slug: params[:title])
-    venue = Venue.find_by(slug: params[:name])
+    @event = Event.find_by_slug(params[:title])
+    venue = Venue.find_by_slug(params[:name])
     if @event.nil? || venue.nil?
-      render file: '/public/404', status => 404, :layout => true
+      render_404
     end
   end
 end

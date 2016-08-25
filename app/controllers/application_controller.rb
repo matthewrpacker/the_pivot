@@ -2,7 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user,
                 :categories,
-                :current_admins_venue
+                :current_admins_venue,
+                :render_404,
+                :registered_customer,
+                :venue_admin
 
   before_action :set_cart,
                 :authorize!
@@ -18,10 +21,10 @@ class ApplicationController < ActionController::Base
   def authorize!
     unless authorized?
       unless current_user
-        flash[:danger] = "Not expecting this message? Try \
+        flash.now[:danger] = "Not expecting this message? Try \
           #{view_context.link_to('logging in', login_path)}."
       end
-      render file: '/public/404', status => 404, :layout => true
+      render_404
     end
   end
 
@@ -33,6 +36,18 @@ class ApplicationController < ActionController::Base
 
   def categories
     @categories = Category.all
+  end
+
+  def render_404
+    render file: '/public/404', status => 404, layout: true
+  end
+
+  def registered_customer
+    Role.find_by_name("registered_customer")
+  end
+
+  def venue_admin
+    Role.find_by_name("venue_admin")
   end
 
   private

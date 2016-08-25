@@ -25,6 +25,6 @@ class CartEventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find_by(slug: params[:id])
+    @event = Event.find_by_slug(params[:id])
   end
 end

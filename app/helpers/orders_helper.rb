@@ -1,7 +1,7 @@
 module OrdersHelper
   def verify_user
     unless current_user == @order.user
-      render file: '/public/404', status => 404, :layout => true
+      render_404
     end
   end
 

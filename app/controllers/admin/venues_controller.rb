@@ -18,7 +18,7 @@ class Admin::VenuesController < ApplicationController
 
   def create
     @venue.update(status: "online")
-    @venue.admin.roles << Role.find_by_name("venue_admin")
+    @venue.admin.roles << venue_admin
     send_outcome_email(true)
     flash[:success] = "#{@venue.name} Approved!"
     redirect_to admin_dashboard_index_path
@@ -39,13 +39,11 @@ class Admin::VenuesController < ApplicationController
   private
 
   def venue_params
-    params.require(:venue).permit(
-      :name,
-      :city,
-      :state,
-      :capacity,
-      :upload_image
-    )
+    params.require(:venue).permit(:name,
+                                  :city,
+                                  :state,
+                                  :capacity,
+                                  :upload_image)
   end
 
   def set_venue
@@ -54,7 +52,7 @@ class Admin::VenuesController < ApplicationController
 
   def verify_owner
     unless current_user == @venue.admin || current_user.platform_admin?
-      render file: '/public/404', status => 404, layout: true
+      render_404
     end
   end
 

@@ -66,7 +66,7 @@ class Admin::EventsController < ApplicationController
   def verify_permissions
     unless current_user.platform_admin? ||
            @event.venue.admin == current_admins_venue.admin
-      render file: '/public/404', status => 404, :layout => true
+      render_404
     end
   end
 end

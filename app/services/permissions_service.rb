@@ -41,7 +41,7 @@ class PermissionsService
     return true if controller == 'home'
     return true if controller == 'orders'
     return true if controller == 'users'
-    return true if controller == 'venues'
+    return true if controller == 'venues' && action.in?(%w(index show))
   end
 
   def venue_admin_permissions
@@ -57,7 +57,7 @@ class PermissionsService
     return true if controller == 'home'
     return true if controller == 'orders'
     return true if controller == 'users'
-    return true if controller == 'venues'
+    return true if controller == 'venues' && action.in?(%w(index show))
   end
 
   def registered_customer_permissions
@@ -81,6 +81,6 @@ class PermissionsService
     return true if controller == 'events'
     return true if controller == 'home'
     return true if controller == 'users' && action.in?(%w(new create))
-    return true if controller == 'venues'
+    return true if controller == 'venues' && action.in?(%w(index show))
   end
 end

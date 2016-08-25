@@ -18,7 +18,7 @@
             <%= link_to 'Delete Venue', admin_venue_path(@venue), method: :delete, class: 'center_button btn btn-danger btn-md top-margin' %>
           <% end %>
           <br /><br />
-          <h4><strong><%= link_to '<< Back', request.referrer %></strong></h4>
+          <h4><strong><%= link_to '<< Back', request.referrer if request.referrer %></strong></h4>
         </p>
       <% end %>
     </div>

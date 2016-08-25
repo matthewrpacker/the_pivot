@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.roles << Role.find_by_name("registered_customer")
+      @user.roles << registered_customer
       session[:user_id] = @user.id
       send_welcome_email(@user)
       flash[:success] = "Account created successfully!"
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if current_user.platform_admin?
       session[:last_url] = request.referrer
     elsif current_user.id.to_s != params[:id]
-      render file: '/public/404', status => 404, :layout => true
+      render_404
     end
   end
 

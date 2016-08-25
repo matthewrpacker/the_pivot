@@ -27,6 +27,10 @@
       </div>
     <% end %>
     <%= f.submit "#{button}", class: 'btn btn-success' %>
-    <%= link_to "Cancel", request.referrer, class: 'btn btn-primary' %>
+    <% if request.referrer %>
+      <%= link_to "Cancel", request.referrer, class: 'btn btn-primary' %>
+    <% else %>
+      <%= link_to "Cancel", admin_dashboard_index_path, class: 'btn btn-primary' %>
+    <% end %>
   <% end %>
 </div>

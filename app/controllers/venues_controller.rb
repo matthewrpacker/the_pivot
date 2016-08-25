@@ -4,9 +4,9 @@ class VenuesController < ApplicationController
   end
 
   def show
-    @venue = Venue.find_by(slug: params[:name])
+    @venue = Venue.find_by_slug(params[:name])
     if @venue.nil? || @venue.offline?
-      render file: '/public/404', status => 404, :layout => true
+      render_404
     end
   end
 

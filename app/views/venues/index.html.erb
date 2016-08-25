@@ -1,6 +1,6 @@
 <div class="page-content">
   <h1><strong>Venues</strong></h1>
-  <%= link_to "Back", request.referrer, class: "btn btn-primary bottom-margin" if platform_admin? %>
+  <%= link_to "Back", request.referrer, class: "btn btn-primary bottom-margin" if platform_admin? && request.referrer %>
   <% @venues.each do |venue| %>
     <div class='event' data-all="<%= venue.name %> <%= venue.city %> <%= venue.state %>">
       <div class ="well col-md-3 event-in-list" id="venue-<%= venue.id %>">

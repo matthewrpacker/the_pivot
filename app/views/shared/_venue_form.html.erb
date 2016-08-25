@@ -22,7 +22,7 @@
     </div>
     <%= f.hidden_field :status, value: 'offline' %>
     <%= f.submit label, class: 'btn btn-success top-margin' %>
-    <% if platform_admin? %>
+    <% if platform_admin? && request.referrer %>
       <%= link_to "Cancel", request.referrer, class: 'btn btn-primary top-margin' %>
     <% else %>
       <%= link_to "Cancel", cancel_path, class: 'btn btn-primary top-margin' %>

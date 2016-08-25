@@ -1,8 +1,8 @@
 class CategoriesController < ApplicationController
   def show
-    @category = Category.find_by(slug: params[:title])
+    @category = Category.find_by_slug(params[:title])
     if @category.nil?
-      render file: '/public/404', status => 404, :layout => true
+      render_404
     else
       @events = @category.events.where(status: 0)
     end
