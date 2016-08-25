@@ -31,14 +31,13 @@
             </tr>
           <% end %>
         <tr>
-          <td colspan="5" class="text-right">
+          <td colspan="6" class="text-right">
             <strong>Total: <%= number_to_currency(@order.total) %></strong>
-          </td>
-          <td colspan="5" class="text-right">
-            <%= link_to "Order History", orders_path, class: 'btn btn-primary' %>
           </td>
         </tr>
       </tbody>
     </table>
+    <br />
+    <%= link_to "Order History", orders_path, class: 'btn btn-primary' %>
   </div>
 </div>

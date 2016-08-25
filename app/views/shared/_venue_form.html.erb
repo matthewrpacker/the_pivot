@@ -1,4 +1,4 @@
-<div class="well col-md-7 col-md-offset-2">
+<div class="well center-form">
   <%= form_for(@venue, url: path, html: {multipart: true}) do |f| %>
     <div class="form-group">
       <%= f.label :name, 'Venue Name' %>
@@ -21,11 +21,11 @@
       <%= f.file_field :upload_image, class: 'center_button' %>
     </div>
     <%= f.hidden_field :status, value: 'offline' %>
-    <%= f.submit label, class: 'btn btn-primary top-margin' %>
+    <%= f.submit label, class: 'btn btn-success top-margin' %>
     <% if platform_admin? %>
-    <%= link_to "Cancel", request.referrer, class: 'btn btn-primary top-margin' %>    
+      <%= link_to "Cancel", request.referrer, class: 'btn btn-primary top-margin' %>
     <% else %>
-    <%= link_to "Cancel", cancel_path, class: 'btn btn-primary top-margin' %>
+      <%= link_to "Cancel", cancel_path, class: 'btn btn-primary top-margin' %>
     <% end %>
   <% end %>
 </div>

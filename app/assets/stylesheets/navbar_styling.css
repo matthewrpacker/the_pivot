@@ -16,8 +16,16 @@
   height: 225%;
 }
 
+#current-user-info>a {
+  color: rgb(35, 45, 80);
+}
+
+#current-user-info>a:hover {
+  color: rgb(59, 142, 174);
+}
+
 .navbar-default .navbar-nav>li>a {
-  color: rgb(38, 60, 71);
+  color: rgb(35, 45, 80);
 }
 
 .navbar-default .navbar-nav>li>a:hover {

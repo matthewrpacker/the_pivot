@@ -1,47 +1,57 @@
 <div class="page-content">
   <h1><strong>Shopping Cart</strong></h1>
   <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Event Name</th>
-          <th>Category</th>
-          <th>Venue</th>
-          <th>Date</th>
-          <th>Quantity</th>
-          <th>Unit Price</th>
-          <th>Subtotal</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @events.each do |event| %>
-          <tr id="event-<%= event.id %>">
-            <td><%= image_tag event.venue.image_path, class: "cart-pic img-circle" %></td>
-            <td><%= link_to event.title, event_path(event.venue, event) %></td>
-            <td><%= event.category.title %></td>
-            <td><%= event.venue.name %></td>
-            <td><%= event.event_date %></td>
-            <td>
-              <%= form_for(event, url: cart_event_path(event)) do |f| %>
-                <div class='form-group'>
-                  <%= f.select :quantity, quantities, {}, { value: event.quantity, class: 'form-control', onchange: 'this.form.submit();' } %>
-                </div>
-              <% end %>
-            </td>
-            <td><%= number_to_currency(event.price) %></td>
-            <td><%= number_to_currency(event.sub_total) %></td>
-            <td><%= button_to "Remove", cart_event_path(event), method: :delete, class: 'btn btn-danger btn-sm' %></td>
+    <% if @events.empty? %>
+      <div class="well" id="no-pending-msg">
+        <center><h4>
+          <strong>Your cart is empty!</strong>
+          <br><br />
+          Time to make some memories at one of the many incredible <%= link_to "events", events_path %> coming soon!
+        </h4></center>
+      </div>
+    <% else %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Event Name</th>
+            <th>Category</th>
+            <th>Venue</th>
+            <th>Date</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Subtotal</th>
+            <th></th>
           </tr>
-        <% end %>
-        <tr>
-          <td colspan='9' class='text-right'>
-            <strong>Total: <%= number_to_currency(@cart.total_cost) %></strong>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @events.each do |event| %>
+            <tr id="event-<%= event.id %>">
+              <td><%= image_tag event.venue.image_path, class: "cart-pic img-circle" %></td>
+              <td><%= link_to event.title, event_path(event.venue, event) %></td>
+              <td><%= event.category.title %></td>
+              <td><%= event.venue.name %></td>
+              <td><%= event.event_date %></td>
+              <td>
+                <%= form_for(event, url: cart_event_path(event)) do |f| %>
+                  <div class='form-group'>
+                    <%= f.select :quantity, quantities, {}, { value: event.quantity, class: 'form-control', onchange: 'this.form.submit();' } %>
+                  </div>
+                <% end %>
+              </td>
+              <td><%= number_to_currency(event.price) %></td>
+              <td><%= number_to_currency(event.sub_total) %></td>
+              <td><%= button_to "Remove", cart_event_path(event), method: :delete, class: 'btn btn-danger btn-sm' %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td colspan='9' class='text-right'>
+              <strong>Total: <%= number_to_currency(@cart.total_cost) %></strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
   </div>
   <div class='col-md-12'>
     <%= link_to 'Back to All Events', events_path, class: 'col-md-2 btn btn-default' %>

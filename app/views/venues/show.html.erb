@@ -9,6 +9,7 @@
       <p><strong>Location:</strong> <%= @venue.location %></p>
       <p><strong>Capacity:</strong> <%= @venue.capacity %></p>
       <% if this_venues_admin? || platform_admin? %>
+        <br />
         <p>
           <%= link_to 'Add New Event', new_admin_event_path, class: 'center_button btn btn-success' %>
           <br />

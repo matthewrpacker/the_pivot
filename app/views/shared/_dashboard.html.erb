@@ -1,5 +1,5 @@
 <div class="well center" id="dashboard">
-  <div class="well table-responsive fit-width">
+  <div class="well table-responsive">
     <table class="table" id="user_dashboard">
       <tr>
         <th>Username</th>
@@ -25,12 +25,15 @@
         </tr>
       <% end %>
     </table>
-    <div class='row col-md-6'>
-      <%= link_to 'Manage My Account', edit_user_path(current_user), class: 'btn btn-default' %>
-      <%= link_to 'Manage Events', venue_path(name: @venue.slug), class: 'btn btn-default' if venue_admin_only? %>
-      <%= link_to 'Manage Events', events_path, class: 'btn btn-default' if platform_admin? %>
-      <%= link_to 'Manage Venues', venues_path, class: 'btn btn-default' if platform_admin? %>
-    </div>
+      <center><%= link_to 'Manage My Account', edit_user_path(current_user), class: 'btn btn-default' %></center>
+      <%= link_to 'Manage Events', venue_path(name: @venue.slug), class: 'btn btn-default pull-right' if venue_admin_only? %>
+      <% if platform_admin? %>
+      <br />
+      <center>
+        <%= link_to 'Manage Events', events_path, class: 'btn btn-default top-margin' %>
+        <%= link_to 'Manage Venues', venues_path, class: 'btn btn-default top-margin' %>
+      </center>
+      <% end %>
   </div>
 
   <% if !venue_admin? %>
@@ -40,19 +43,23 @@
   <% end %>
 
   <% if platform_admin? %>
-  <br />
-    <div class="well table-responsive row col-md-7">
+    <div class="well table-responsive" id="pending">
       <h2>Pending Venues</h2>
-      <table class="table" id="pending">
-        <thead>
-          <th>Venue Name</th>
-          <th>Location</th>
-          <th>Capacity</th>
-          <th>Admin</th>
-          <th class="text-center">Action</th>
-        </thead>
-        <tbody>
-          <% @venues.each do |venue| %>
+      <% if @venues.empty? %>
+        <div id="no-pending-msg">
+          <center><h4><em>There are no venues currently pending. Get out there and recruit!</em></h4></center>
+        </div>
+      <% else %>
+        <table class="table">
+          <thead>
+            <th>Venue Name</th>
+            <th>Location</th>
+            <th>Capacity</th>
+            <th>Admin</th>
+            <th class="text-center">Action</th>
+          </thead>
+          <tbody>
+            <% @venues.each do |venue| %>
             <tr id="venue-<%= venue.id %>">
               <td><%= venue.name %></td>
               <td><%= venue.location %></td>
@@ -63,9 +70,10 @@
                 <%= button_to "Decline", admin_venue_path(venue), { method: :delete, class: "btn btn-danger center_button btn-xs" } %>
               </td>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
     </div>
   <% end %>
 </div>

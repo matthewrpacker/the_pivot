@@ -278,7 +278,6 @@ class Seed
           title: "#{Faker::Book.title} #{Faker::Company.profession.capitalize}",
           supporting_act: Faker::App.author,
           price: Faker::Commerce.price,
-          image_path: "http://robohash.org/#{i}.png?set=set2&bgset=bg1&size=200x200",
           category: category,
           venue: Venue.offset(rand(Venue.count)).first,
           date: Faker::Time.forward(150, :evening)

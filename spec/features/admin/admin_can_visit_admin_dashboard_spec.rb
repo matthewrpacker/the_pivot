@@ -44,6 +44,7 @@ RSpec.feature "Admin can view dashboard" do
       end
       expect(page).to have_link "Manage My Account"
       expect(page).to have_link "Manage Venues"
+      expect(page).to have_link "Manage Events"
       expect(page).to have_content "Pending Venues"
     end
   end

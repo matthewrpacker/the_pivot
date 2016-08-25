@@ -41,10 +41,6 @@
     padding-right: 10%;
   }
 
-  .float-left {
-    float: left;
-  }
-
   .event-content {
     padding-left: 400px;
   }
@@ -76,6 +72,15 @@
     margin-top: 0;
     background: none;
     border: none;
+  }
+
+  #pending>h2 {
+    margin-top: 10px;
+  }
+
+  #no-pending-msg>center>h4 {
+    margin-top: 30px;
+    margin-bottom: 20px;
   }
 
   .sell-btn {
@@ -156,14 +161,13 @@
   }
 
   .filter-bar {
-    color: #232b2b;
     font-size: 20px;
     font-weight: lighter;
     text-align: left;
   }
 
   .filter-field {
-    background-color: white;
+    color: black;
     width: 500px;
   }
 
@@ -185,17 +189,17 @@
   }
 
   .btn-warning {
-    background-color: rgb(200, 181, 80);
-    border-color: rgba(85, 85, 85, 0.4);
+    background-color: rgba(16, 56, 86, 0.7);
+    border: none;
     margin-bottom: 20px;
-    color: rgb(85, 85, 85);
+    color: rgb(190, 190, 190);
   }
 
   .btn-warning:hover {
-    background-color: rgb(200, 181, 80);
-    border-color: rgba(85, 85, 85, 0.4);
+    background-color: rgba(16, 56, 86, 0.7);
+    border: none;
     margin-bottom: 20px;
-    color: rgb(85, 85, 85);
+    color: rgb(190, 190, 190);
   }
 
   .btn-danger:hover {
